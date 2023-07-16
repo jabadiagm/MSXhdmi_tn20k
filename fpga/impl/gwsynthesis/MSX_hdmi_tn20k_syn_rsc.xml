@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="MSX_Interceptor" Register="1" Alu="19" Lut="12">
+    <SubModule name="vdp4" Register="35" Alu="8" Lut="100" Ssram="4">
+        <SubModule name="clk_135_inst"/>
+        <SubModule name="clk_sdramp_inst"/>
+        <SubModule name="vram" Register="49" Lut="23">
+            <SubModule name="u_sdram" Register="52" Alu="14" Lut="99"/>
+        </SubModule>
+        <SubModule name="u_v9958" Register="61" Lut="336">
+            <SubModule name="U_VDP_VGA" Register="10" Lut="19">
+                <SubModule name="DBUF" Lut="21">
+                    <SubModule name="U_BUF_BE" Bsram="1"/>
+                    <SubModule name="U_BUF_BO" Bsram="1"/>
+                </SubModule>
+            </SubModule>
+            <SubModule name="U_SSG" Register="65" Alu="30" Lut="99">
+                <SubModule name="U_HVCOUNTER" Register="39" Lut="67"/>
+            </SubModule>
+            <SubModule name="U_VDP_COLORDEC" Register="57" Lut="86"/>
+            <SubModule name="U_VDP_TEXT12" Register="95" Alu="12" Lut="154"/>
+            <SubModule name="U_VDP_GRAPHIC123M" Register="61" Alu="5" Lut="66"/>
+            <SubModule name="U_VDP_GRAPHIC4567" Register="150" Alu="41" Lut="161">
+                <SubModule name="U_FIFOMEM" Bsram="1"/>
+            </SubModule>
+            <SubModule name="U_SPRITE" Register="242" Alu="14" Lut="319">
+                <SubModule name="ISPINFORAM" Register="3" Ssram="8"/>
+                <SubModule name="U_EVEN_LINE_BUF" Bsram="1"/>
+                <SubModule name="U_ODD_LINE_BUF" Bsram="1"/>
+            </SubModule>
+            <SubModule name="U_VDP_REGISTER" Register="219" Lut="103">
+                <SubModule name="U_PALETTEMEMRB" Register="5" Bsram="1"/>
+            </SubModule>
+            <SubModule name="U_VDP_COMMAND" Register="178" Alu="77" Lut="552"/>
+            <SubModule name="U_VDP_WAIT_CONTROL" Register="16" Alu="152" Lut="176"/>
+        </SubModule>
+        <SubModule name="hdmi_ntsc" Register="61" Alu="9" Lut="50">
+            <SubModule name="true_hdmi_output.packet_picker" Register="421" Lut="333">
+                <SubModule name="audio_clock_regeneration_packet" Register="42" Alu="20" Lut="8"/>
+            </SubModule>
+            <SubModule name="true_hdmi_output.packet_assembler" Register="45" Alu="4" Lut="350"/>
+            <SubModule name="tmds_gen[0].tmds_channel" Register="14" Alu="16" Lut="89"/>
+            <SubModule name="tmds_gen[1].tmds_channel" Register="14" Alu="16" Lut="74"/>
+            <SubModule name="tmds_gen[2].tmds_channel" Register="14" Alu="16" Lut="67"/>
+        </SubModule>
+        <SubModule name="hdmi_pal" Register="45" Alu="11" Lut="56">
+            <SubModule name="true_hdmi_output.packet_picker" Register="404" Lut="330">
+                <SubModule name="audio_clock_regeneration_packet" Register="42" Alu="20" Lut="8"/>
+            </SubModule>
+            <SubModule name="true_hdmi_output.packet_assembler" Register="45" Alu="4" Lut="349"/>
+            <SubModule name="tmds_gen[0].tmds_channel" Register="14" Alu="16" Lut="74"/>
+            <SubModule name="tmds_gen[1].tmds_channel" Register="14" Alu="16" Lut="70"/>
+            <SubModule name="tmds_gen[2].tmds_channel" Register="14" Alu="16" Lut="65"/>
+        </SubModule>
+        <SubModule name="serializer"/>
+    </SubModule>
+    <SubModule name="psg1" Register="226" Alu="62" Lut="255"/>
+    <SubModule name="opll1" Register="17" Lut="6">
+        <SubModule name="s0" Register="7" Lut="5"/>
+        <SubModule name="s2" Register="6" Lut="8"/>
+        <SubModule name="s5" Register="7" Lut="7"/>
+        <SubModule name="s8" Register="4" Lut="9"/>
+        <SubModule name="ct" Register="157" Alu="14" Lut="179">
+            <SubModule name="u_register_memory" Register="28" Lut="36" Ssram="6"/>
+            <SubModule name="vmem" Register="14" Alu="5" Lut="57" Bsram="2">
+                <SubModule name="ROM2413" Register="4" Lut="9" Bsram="1"/>
+            </SubModule>
+        </SubModule>
+        <SubModule name="eg" Register="143" Alu="91" Lut="312">
+            <SubModule name="u_attack_table" Register="17" Alu="7" Lut="18" Dsp="1" Bsram="2">
+                <SubModule name="u_attack_table_mul" Dsp="1"/>
+            </SubModule>
+            <SubModule name="u_envelope_memory" Register="30" Alu="4" Lut="61" Ssram="14"/>
+        </SubModule>
+        <SubModule name="pg" Register="53" Alu="48" Lut="86" Dsp="1">
+            <SubModule name="MEM" Register="23" Alu="4" Lut="47" Ssram="10"/>
+        </SubModule>
+        <SubModule name="op" Register="49" Alu="31" Lut="88">
+            <SubModule name="u_sine_table" Register="16" Alu="11" Lut="21" Dsp="1" Bsram="2">
+                <SubModule name="u_interpolate_mul" Dsp="1"/>
+            </SubModule>
+        </SubModule>
+        <SubModule name="og" Register="31" Alu="11" Lut="43">
+            <SubModule name="Fmem" Register="14" Lut="23" Ssram="3"/>
+            <SubModule name="Mmem" Register="25" Alu="4" Lut="41" Ssram="12"/>
+            <SubModule name="Ltbl" Register="11" Alu="9" Lut="10" Dsp="1" Bsram="2">
+                <SubModule name="u_linear_table_mul" Dsp="1"/>
+            </SubModule>
+        </SubModule>
+        <SubModule name="tm" Register="27" Lut="70"/>
+    </SubModule>
+    <SubModule name="filtro_fm" Register="11" Lut="13">
+        <SubModule name="filter1" Register="93" Alu="74" Lut="1"/>
+        <SubModule name="filter1b" Register="120" Alu="95"/>
+        <SubModule name="interclock1" Register="18" Lut="3"/>
+        <SubModule name="filter2" Register="147" Alu="116"/>
+        <SubModule name="filter2b" Register="174" Alu="137"/>
+        <SubModule name="interclock2" Register="24" Lut="3"/>
+        <SubModule name="filter3" Register="201" Alu="158"/>
+        <SubModule name="filter4" Register="228" Alu="179"/>
+        <SubModule name="interclock3" Register="30" Lut="3"/>
+        <SubModule name="filter5" Register="155" Alu="148"/>
+    </SubModule>
+    <SubModule name="denoise2" Register="3" Lut="1"/>
+    <SubModule name="denoise3" Register="3" Lut="1"/>
+    <SubModule name="denoise4" Register="3" Lut="1"/>
+    <SubModule name="denoise5" Register="3" Lut="1"/>
+    <SubModule name="denoise6" Register="3" Lut="1"/>
+    <SubModule name="denoise8_1">
+        <SubModule name="denoise[0].denoise8" Register="3" Lut="1"/>
+        <SubModule name="denoise[1].denoise8" Register="3" Lut="1"/>
+        <SubModule name="denoise[2].denoise8" Register="3" Lut="1"/>
+        <SubModule name="denoise[3].denoise8" Register="3" Lut="1"/>
+        <SubModule name="denoise[4].denoise8" Register="3" Lut="1"/>
+        <SubModule name="denoise[5].denoise8" Register="3" Lut="1"/>
+        <SubModule name="denoise[6].denoise8" Register="3" Lut="1"/>
+        <SubModule name="denoise[7].denoise8" Register="3" Lut="1"/>
+    </SubModule>
+    <SubModule name="denoise8_2">
+        <SubModule name="denoise[0].denoise8" Register="3" Lut="1"/>
+        <SubModule name="denoise[1].denoise8" Register="3" Lut="1"/>
+        <SubModule name="denoise[2].denoise8" Register="3" Lut="1"/>
+        <SubModule name="denoise[3].denoise8" Register="3" Lut="1"/>
+        <SubModule name="denoise[4].denoise8" Register="3" Lut="1"/>
+        <SubModule name="denoise[5].denoise8" Register="3" Lut="1"/>
+        <SubModule name="denoise[6].denoise8" Register="3" Lut="1"/>
+        <SubModule name="denoise[7].denoise8" Register="3" Lut="1"/>
+    </SubModule>
+</Module>

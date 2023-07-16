@@ -1,0 +1,79 @@
+IO_LOC "ex_clk_27m" 4;
+IO_PORT "ex_clk_27m" IO_TYPE=LVCMOS33;
+IO_LOC "ex_reset" 87;
+IO_PORT "ex_reset" PULL_MODE=UP;
+IO_LOC "ex_btn0" 88;
+IO_PORT "ex_btn0" PULL_MODE=UP;
+
+
+// LED
+IO_LOC "ex_led[5]" 20;
+IO_PORT "ex_led[5]" PULL_MODE=NONE IO_TYPE=LVCMOS33;
+IO_LOC "ex_led[4]" 19;
+IO_PORT "ex_led[4]" PULL_MODE=NONE IO_TYPE=LVCMOS33;
+IO_LOC "ex_led[3]" 18;
+IO_PORT "ex_led[3]" PULL_MODE=NONE IO_TYPE=LVCMOS33;
+IO_LOC "ex_led[2]" 17;
+IO_PORT "ex_led[2]" PULL_MODE=NONE IO_TYPE=LVCMOS33;
+IO_LOC "ex_led[1]" 16;
+IO_PORT "ex_led[1]" PULL_MODE=NONE IO_TYPE=LVCMOS33;
+IO_LOC "ex_led[0]" 15;
+IO_PORT "ex_led[0]" PULL_MODE=NONE IO_TYPE=LVCMOS33;
+
+//hdmi pins
+IO_LOC "data_p[0]" 35,36;
+IO_PORT "data_p[0]" PULL_MODE=NONE DRIVE=4;
+IO_LOC "data_p[1]" 37,38;
+IO_PORT "data_p[1]" PULL_MODE=NONE DRIVE=4;
+IO_LOC "data_p[2]" 39,40;
+IO_PORT "data_p[2]" PULL_MODE=NONE DRIVE=4;
+IO_LOC "clk_p" 33,34;
+IO_PORT "clk_p" PULL_MODE=NONE DRIVE=4;
+
+IO_LOC "ex_busAddress[0]" 73;
+IO_PORT "ex_busAddress[0]" IO_TYPE=LVCMOS33;
+IO_LOC "ex_busAddress[1]" 74;
+IO_PORT "ex_busAddress[1]" IO_TYPE=LVCMOS33;
+IO_LOC "ex_busAddress[2]" 42;
+IO_PORT "ex_busAddress[2]" IO_TYPE=LVCMOS33;
+IO_LOC "ex_busAddress[3]" 85;
+IO_PORT "ex_busAddress[3]" IO_TYPE=LVCMOS33;
+IO_LOC "ex_busAddress[4]" 77;
+IO_PORT "ex_busAddress[4]" IO_TYPE=LVCMOS33;
+IO_LOC "ex_busAddress[5]" 27;
+IO_PORT "ex_busAddress[5]" IO_TYPE=LVCMOS33;
+IO_LOC "ex_busAddress[6]" 28;
+IO_PORT "ex_busAddress[6]" IO_TYPE=LVCMOS33;
+IO_LOC "ex_busAddress[7]" 25;
+IO_PORT "ex_busAddress[7]" IO_TYPE=LVCMOS33;
+
+IO_LOC "ex_busDataOut[0]" 26;
+IO_PORT "ex_busDataOut[0]" IO_TYPE=LVCMOS33;
+IO_LOC "ex_busDataOut[1]" 29;
+IO_PORT "ex_busDataOut[1]" IO_TYPE=LVCMOS33;
+IO_LOC "ex_busDataOut[2]" 30;
+IO_PORT "ex_busDataOut[2]" IO_TYPE=LVCMOS33;
+IO_LOC "ex_busDataOut[3]" 31;
+IO_PORT "ex_busDataOut[3]" IO_TYPE=LVCMOS33;
+IO_LOC "ex_busDataOut[4]" 72;
+IO_PORT "ex_busDataOut[4]" IO_TYPE=LVCMOS33;
+IO_LOC "ex_busDataOut[5]" 71;
+IO_PORT "ex_busDataOut[5]" IO_TYPE=LVCMOS33;
+IO_LOC "ex_busDataOut[6]" 53;
+IO_PORT "ex_busDataOut[6]" IO_TYPE=LVCMOS33;
+IO_LOC "ex_busDataOut[7]" 52;
+IO_PORT "ex_busDataOut[7]" IO_TYPE=LVCMOS33;
+
+IO_LOC "ex_busMreq_n" 56;
+IO_PORT "ex_busMreq_n" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_LOC "ex_busIorq_n" 54;
+IO_PORT "ex_busIorq_n" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_LOC "ex_busRd_n" 51;
+IO_PORT "ex_busRd_n" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_LOC "ex_busWr_n" 48;
+IO_PORT "ex_busWr_n" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_LOC "ex_busReset_n" 55;
+IO_PORT "ex_busReset_n" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_LOC "ex_clk_3m6" 49;
+IO_PORT "ex_clk_3m6" IO_TYPE=LVCMOS33;
+

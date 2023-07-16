@@ -1,0 +1,34 @@
+Reading netlist file: "D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\impl\gwsynthesis\MSX_hdmi_tn20k.vg"
+Parsing netlist file "D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\impl\gwsynthesis\MSX_hdmi_tn20k.vg" completed
+Processing netlist completed
+Reading constraint file: "D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tang9k.cst"
+Physical Constraint parsed completed
+Running placement......
+[10%] Placement Phase 0 completed
+[20%] Placement Phase 1 completed
+[30%] Placement Phase 2 completed
+WARN  (TA1117) : Can't calculate clocks' relationship between: "filtro_fm/clk_360k" and "clk_3m6"
+WARN  (TA1117) : Can't calculate clocks' relationship between: "filtro_fm/clk_1m8" and "clk_3m6"
+WARN  (TA1117) : Can't calculate clocks' relationship between: "clk_3m6_gowin" and "clk_3m6"
+[50%] Placement Phase 3 completed
+Running routing......
+[60%] Routing Phase 0 completed
+[70%] Routing Phase 1 completed
+[80%] Routing Phase 2 completed
+WARN  (PR1014) : Generic routing resource will be used to clock signal 'ex_clk_27m_d' by the specified constraint. And then it may lead to the excessive delay or skew
+WARN  (PR1014) : Generic routing resource will be used to clock signal 'ex_clk_3m6_d' by the specified constraint. And then it may lead to the excessive delay or skew
+[90%] Routing Phase 3 completed
+Running timing analysis......
+[95%] Timing analysis completed
+Placement and routing completed
+Bitstream generation in progress......
+Bitstream generation completed
+Running power analysis......
+[100%] Power analysis completed
+Generate file "D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\impl\pnr\MSX_hdmi_tn20k.power.html" completed
+Generate file "D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\impl\pnr\MSX_hdmi_tn20k.pin.html" completed
+Generate file "D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\impl\pnr\MSX_hdmi_tn20k.rpt.html" completed
+Generate file "D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\impl\pnr\MSX_hdmi_tn20k.rpt.txt" completed
+Generate file "D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\impl\pnr\MSX_hdmi_tn20k.tr.html" completed
+Sun Jul 16 21:31:19 2023
+

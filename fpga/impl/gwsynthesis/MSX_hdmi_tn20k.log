@@ -2,6 +2,7 @@ GowinSynthesis start
 Running parser ...
 Analyzing Verilog file 'D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\fm_filter\fm_filter.v'
 Analyzing Verilog file 'D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\fm_filter\inter_clock.v'
+Analyzing Verilog file 'D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\src\ram_16kb.v'
 Analyzing Verilog file 'D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\gowin\clk_108p.v'
 Analyzing Verilog file 'D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\gowin\clk_135.v'
 Analyzing Verilog file 'D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\hdmi\audio_clock_regeneration_packet.sv'
@@ -25,22 +26,14 @@ Analyzing Verilog file 'D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn
 Analyzing Verilog file 'D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\sdram.v'
 Analyzing Verilog file 'D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v'
 Undeclared symbol 'clk_50', assumed default net type 'wire'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":109)
-Undeclared symbol 'clk_135', assumed default net type 'wire'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":116)
-Undeclared symbol 'clk_sdram', assumed default net type 'wire'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":131)
-Undeclared symbol 'clk_sdramp', assumed default net type 'wire'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":133)
-Undeclared symbol 'cpuclk_w', assumed default net type 'wire'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":355)
-WARN  (EX2830) : Data object 'cy_ntsc' is already declared("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":458)
-Previous declaration of 'cy_ntsc' is from here("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":390)
-WARN  (EX3671) : Second declaration of 'cy_ntsc' is ignored("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":458)
-WARN  (EX2830) : Data object 'cx_ntsc' is already declared("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":459)
-Previous declaration of 'cx_ntsc' is from here("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":391)
-WARN  (EX3671) : Second declaration of 'cx_ntsc' is ignored("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":459)
-WARN  (EX2830) : Data object 'cy_pal' is already declared("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":486)
-Previous declaration of 'cy_pal' is from here("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":392)
-WARN  (EX3671) : Second declaration of 'cy_pal' is ignored("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":486)
-WARN  (EX2830) : Data object 'cx_pal' is already declared("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":487)
-Previous declaration of 'cx_pal' is from here("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":393)
-WARN  (EX3671) : Second declaration of 'cx_pal' is ignored("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":487)
+Undeclared symbol 'clk_125', assumed default net type 'wire'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":114)
+Undeclared symbol 'rst_n', assumed default net type 'wire'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":121)
+Undeclared symbol 'clk_135', assumed default net type 'wire'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":126)
+Undeclared symbol 'clk_sdram', assumed default net type 'wire'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":141)
+Undeclared symbol 'clk_sdramp', assumed default net type 'wire'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":143)
+Undeclared symbol 'clk_audio_w', assumed default net type 'wire'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":411)
+Analyzing Verilog file 'D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\pinfilter.v'
+Analyzing Verilog file 'D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\clockdiv.v'
 Analyzing VHDL file 'D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\Denoise\denoise_low.vhd'
 Analyzing entity 'denoise_low'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\Denoise\denoise_low.vhd":5)
 Analyzing architecture 'rtl'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\Denoise\denoise_low.vhd":15)
@@ -49,7 +42,7 @@ Analyzing entity 'denoise_low8'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi
 Analyzing architecture 'rtl'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\Denoise\denoise_low8.vhd":14)
 Analyzing VHDL file 'D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\MSX_Interceptor.vhd'
 Analyzing entity 'msx_interceptor'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\MSX_Interceptor.vhd":10)
-Analyzing architecture 'struct'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\MSX_Interceptor.vhd":59)
+Analyzing architecture 'struct'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\MSX_Interceptor.vhd":64)
 Analyzing VHDL file 'D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\OCM_3.9\sound\filter\tapram.vhd'
 Analyzing entity 'tapram'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\OCM_3.9\sound\filter\tapram.vhd":38)
 Analyzing architecture 'rtl'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\OCM_3.9\sound\filter\tapram.vhd":51)
@@ -131,6 +124,9 @@ Analyzing architecture 'rtl'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn
 Analyzing VHDL file 'D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\PSG_YM2149\YM2149.vhdl'
 Analyzing entity 'ym2149'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\PSG_YM2149\YM2149.vhdl":62)
 Analyzing architecture 'rtl'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\PSG_YM2149\YM2149.vhdl":94)
+Analyzing VHDL file 'D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\monostable\monostable.vhd'
+Analyzing entity 'monostable'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\monostable\monostable.vhd":7)
+Analyzing architecture 'rtl'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\monostable\monostable.vhd":18)
 Analyzing VHDL file 'D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\ram.vhd'
 Analyzing entity 'ram'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\ram.vhd":37)
 Analyzing architecture 'rtl'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\ram.vhd":47)
@@ -163,7 +159,7 @@ Analyzing architecture 'rtl'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn
 Analyzing VHDL file 'D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\vdp\vdp_hvcounter.vhd'
 Analyzing entity 'vdp_hvcounter'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\vdp\vdp_hvcounter.vhd":67)
 Analyzing architecture 'rtl'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\vdp\vdp_hvcounter.vhd":88)
-WARN  (EX4967) : Cannot read from 'out' object 'hdmi_reset', use 'buffer' or 'inout' instead("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\vdp\vdp_hvcounter.vhd":154)
+WARN  (EX4967) : Cannot read from 'out' object 'hdmi_reset', use 'buffer' or 'inout' instead("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\vdp\vdp_hvcounter.vhd":158)
 Analyzing VHDL file 'D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\vdp\vdp_interrupt.vhd'
 Analyzing entity 'vdp_interrupt'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\vdp\vdp_interrupt.vhd":65)
 Analyzing architecture 'rtl'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\vdp\vdp_interrupt.vhd":82)
@@ -198,13 +194,11 @@ Analyzing VHDL file 'D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vd
 Analyzing entity 'vencode'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\vdp\vencode.vhd":37)
 Analyzing architecture 'rtl'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\vdp\vencode.vhd":57)
 Processing 'MSX_Interceptor(struct)'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\MSX_Interceptor.vhd":10)
-Switching to Verilog mode to elaborate module 'v9958_top'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\MSX_Interceptor.vhd":349)
-WARN  (EX3073) : Port 'frame_width' remains unconnected for this instance("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":484)
-WARN  (EX3073) : Port 'frame_width' remains unconnected for this instance("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":512)
-WARN  (EX3073) : Port 'tmds_clock' remains unconnected for this instance("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":523)
+Switching to Verilog mode to elaborate module 'v9958_top'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\MSX_Interceptor.vhd":355)
+WARN  (EX3073) : Port 'frame_width' remains unconnected for this instance("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":453)
+WARN  (EX3073) : Port 'frame_width' remains unconnected for this instance("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":479)
+WARN  (EX3073) : Port 'tmds_clock' remains unconnected for this instance("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":490)
 Compiling module 'v9958_top'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":3)
-WARN  (EX3791) : Expression size 64 truncated to fit in target size 32("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":341)
-WARN  (EX3791) : Expression size 64 truncated to fit in target size 32("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":426)
 Compiling module 'CLK_135'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\gowin\clk_135.v":10)
 Compiling module 'CLK_108P'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\gowin\clk_108p.v":10)
 WARN  (EX3073) : Port 'dout32' remains unconnected for this instance("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\memory_controller.v":60)
@@ -212,10 +206,9 @@ Compiling module 'memory_controller(FREQ=108000000)'("D:\datos\proyectos\43_Tang
 Compiling module 'sdram(FREQ=108000000)'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\sdram.v":27)
 WARN  (EX3791) : Expression size 16 truncated to fit in target size 15("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\sdram.v":283)
 WARN  (EX3791) : Expression size 21 truncated to fit in target size 20("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\memory_controller.v":86)
-WARN  (EX3670) : Actual bit length 21 differs from formal bit length 22 for port 'addr'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":162)
-WARN  (EX2420) : Latch inferred for net 'csr_next'; We do not recommend the use of latches in FPGA designs, as they may lead to timing problems("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":232)
-WARN  (EX2420) : Latch inferred for net 'csw_next'; We do not recommend the use of latches in FPGA designs, as they may lead to timing problems("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":235)
-Switching to VHDL mode to elaborate design unit 'VDP'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":320)
+WARN  (EX3670) : Actual bit length 21 differs from formal bit length 22 for port 'addr'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":172)
+Compiling module 'PINFILTER'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\pinfilter.v":1)
+Switching to VHDL mode to elaborate design unit 'VDP'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":317)
 Processing 'VDP(RTL)'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\vdp\vdp.vhd":254)
 Processing 'VDP_NTSC_PAL(RTL)'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\vdp\vdp_ntsc_pal.vhd":96)
 Processing 'VDP_VGA(RTL)'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\vdp\vdp_vga.vhd":102)
@@ -253,7 +246,13 @@ Extracting RAM for identifier 'blkram'("D:\datos\proyectos\43_Tang_Nano_20k\15_M
 Processing 'VDP_COMMAND(RTL)'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\vdp\vdp_command.vhd":67)
 WARN  (EX4160) : Latch inferred for net 'NXCOUNT[9]'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\vdp\vdp_command.vhd":783)
 Processing 'VDP_WAIT_CONTROL(RTL)'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\vdp\vdp_wait_control.vhd":59)
-Returning to Verilog mode to proceed with elaboration("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":320)
+Returning to Verilog mode to proceed with elaboration("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":317)
+Compiling module 'CLOCK_DIV(CLK_SRC=27,CLK_DIV=0.0441)'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\clockdiv.v":1)
+WARN  (EX3791) : Expression size 64 truncated to fit in target size 32("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\clockdiv.v":12)
+WARN  (EX3791) : Expression size 64 truncated to fit in target size 32("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\clockdiv.v":13)
+WARN  (EX3791) : Expression size 64 truncated to fit in target size 32("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\clockdiv.v":15)
+WARN  (EX3791) : Expression size 18 truncated to fit in target size 17("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\clockdiv.v":31)
+WARN  (EX3791) : Expression size 12 truncated to fit in target size 11("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\clockdiv.v":34)
 Compiling module 'hdmi(VIDEO_ID_CODE=2,VENDOR_NAME=64'b0101010101101110011010110110111001101111011101110110111000000000,PRODUCT_DESCRIPTION=128'b01000110010100000100011101000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,START_Y=485)'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\hdmi\hdmi.sv":4)
 Compiling module 'packet_picker(VIDEO_ID_CODE=2,VIDEO_RATE=27000000.0,IT_CONTENT=1'b1,AUDIO_BIT_WIDTH=16,AUDIO_RATE=44100,VENDOR_NAME=64'b0101010101101110011010110110111001101111011101110110111000000000,PRODUCT_DESCRIPTION=128'b01000110010100000100011101000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,SOURCE_DEVICE_INFORMATION=8'b00000000)'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\hdmi\packet_picker.sv":4)
 Extracting RAM for identifier 'audio_sample_word_buffer'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\hdmi\packet_picker.sv":80)
@@ -276,10 +275,11 @@ Extracting RAM for identifier 'audio_sample_word_buffer'("D:\datos\proyectos\43_
 Compiling module 'auxiliary_video_information_info_frame(VIDEO_ID_CODE=32'sb00000000000000000000000000010001)'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\hdmi\auxiliary_video_information_info_frame.sv":5)
 WARN  (EX1998) : Net 'headers[255][23]' does not have a driver("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\hdmi\packet_picker.sv":29)
 WARN  (EX1998) : Net 'subs[255][3][55]' does not have a driver("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\hdmi\packet_picker.sv":30)
-WARN  (EX3670) : Actual bit length 10 differs from formal bit length 12 for port 'cx'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":509)
+WARN  (EX3670) : Actual bit length 10 differs from formal bit length 12 for port 'cx'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":476)
 Compiling module 'serializer(VIDEO_RATE=0)'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\hdmi\serializer.sv":3)
 WARN  (EX1998) : Net 'clk_50' does not have a driver("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":109)
-Returning to VHDL mode to continue with elaboration("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\MSX_Interceptor.vhd":349)
+WARN  (EX1998) : Net 'clk_125' does not have a driver("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":114)
+Returning to VHDL mode to continue with elaboration("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\MSX_Interceptor.vhd":355)
 Processing 'YM2149(RTL)'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\PSG_YM2149\YM2149.vhdl":62)
 'others' clause is never selected("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\PSG_YM2149\YM2149.vhdl":169)
 'others' clause is never selected("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\PSG_YM2149\YM2149.vhdl":225)
@@ -321,7 +321,7 @@ Extracting RAM for identifier 'data_array'("D:\datos\proyectos\43_Tang_Nano_20k\
 Processing 'LinearTable(rtl)'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\OCM_3.9\sound\opll\vm2413\lineartable.vhd":63)
 Processing 'linear_table_mul(rtl)'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\OCM_3.9\sound\opll\vm2413\lineartable.vhd":41)
 Processing 'TemporalMixer(RTL)'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\OCM_3.9\sound\opll\vm2413\temporalmixer.vhd":37)
-Switching to Verilog mode to elaborate module 'fm_filter'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\MSX_Interceptor.vhd":423)
+Switching to Verilog mode to elaborate module 'fm_filter'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\MSX_Interceptor.vhd":429)
 Compiling module 'fm_filter'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\fm_filter\fm_filter.v":3)
 WARN  (EX3791) : Expression size 5 truncated to fit in target size 4("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\fm_filter\fm_filter.v":40)
 WARN  (EX3791) : Expression size 5 truncated to fit in target size 4("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\fm_filter\fm_filter.v":49)
@@ -342,15 +342,20 @@ Returning to Verilog mode to proceed with elaboration("D:\datos\proyectos\43_Tan
 Switching to VHDL mode to elaborate design unit 'lpf1'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\fm_filter\fm_filter.v":184)
 Processing 'LPF1(msbi=31)(RTL)'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\OCM_3.9\sound\lpf\lpf.vhd":39)
 Returning to Verilog mode to proceed with elaboration("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\fm_filter\fm_filter.v":184)
-Returning to VHDL mode to continue with elaboration("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\MSX_Interceptor.vhd":423)
+Returning to VHDL mode to continue with elaboration("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\MSX_Interceptor.vhd":429)
+Switching to Verilog mode to elaborate module 'ram_16kb'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\MSX_Interceptor.vhd":475)
+Compiling module 'ram_16kb'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\src\ram_16kb.v":1)
+Extracting RAM for identifier 'mem_r'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\src\ram_16kb.v":9)
+Returning to VHDL mode to continue with elaboration("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\MSX_Interceptor.vhd":475)
 Processing 'denoise_low(rtl)'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\Denoise\denoise_low.vhd":5)
 Processing 'denoise_low8(rtl)'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\Denoise\denoise_low8.vhd":4)
+Processing 'monostable(rtl)'("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\monostable\monostable.vhd":7)
 NOTE  (EX0101) : Current top module is "MSX_Interceptor"
 WARN  (EX0211) : The output port "gromclk" of module "v9958_top" has no driver, assigning undriven bits to Z, simulation mismatch possible("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":17)
 WARN  (EX0211) : The output port "cpuclk" of module "v9958_top" has no driver, assigning undriven bits to Z, simulation mismatch possible("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v":18)
 [5%] Running netlist conversion ...
-WARN  (CV0016) : Input ex_busMreq_n is unused("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\MSX_Interceptor.vhd":21)
-WARN  (CV0016) : Input ex_btn0 is unused("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\MSX_Interceptor.vhd":34)
+WARN  (CV0020) : Input ex_busAddress[15:14] is unused("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\MSX_Interceptor.vhd":15)
+WARN  (CV0016) : Input ex_btn0 is unused("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\MSX_Interceptor.vhd":38)
 Running device independent optimization ...
 WARN  (DI0003) : Latch inferred for net 'env_vol[4]';We do not recommend the use of latches in FPGA designs, as they may lead to timing problems("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\PSG_YM2149\YM2149.vhdl":511)
 WARN  (DI0003) : Latch inferred for net 'env_vol[3]';We do not recommend the use of latches in FPGA designs, as they may lead to timing problems("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\PSG_YM2149\YM2149.vhdl":511)
@@ -372,7 +377,8 @@ Running technical mapping ...
 [75%] Tech-Mapping Phase 2 completed
 [80%] Tech-Mapping Phase 3 completed
 [90%] Tech-Mapping Phase 4 completed
-WARN  (NL0002) : The module "denoise_low" instantiated to "denoise1" is swept in optimizing("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\MSX_Interceptor.vhd":426)
+WARN  (NL0002) : The module "denoise_low" instantiated to "denoise[6].denoise8" is swept in optimizing("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\Denoise\denoise_low8.vhd":29)
+WARN  (NL0002) : The module "denoise_low" instantiated to "denoise[7].denoise8" is swept in optimizing("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\Denoise\denoise_low8.vhd":29)
 WARN  (NL0002) : The module "audio_info_frame" instantiated to "audio_info_frame" is swept in optimizing("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\hdmi\packet_picker.sv":143)
 WARN  (NL0002) : The module "audio_sample_packet" instantiated to "audio_sample_packet" is swept in optimizing("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\hdmi\packet_picker.sv":131)
 WARN  (NL0002) : The module "auxiliary_video_information_info_frame" instantiated to "auxiliary_video_information_info_frame" is swept in optimizing("D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\hdmi\packet_picker.sv":137)

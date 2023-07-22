@@ -9,7 +9,7 @@
   "SubInsts" : [
    {
     "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/MSX_Interceptor.vhd",
-    "InstLine" : 308,
+    "InstLine" : 314,
     "InstName" : "vdp4",
     "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/v9958_top.v",
     "ModuleLine" : 3,
@@ -17,7 +17,7 @@
     "SubInsts" : [
      {
       "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/v9958_top.v",
-      "InstLine" : 115,
+      "InstLine" : 125,
       "InstName" : "clk_135_inst",
       "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/gowin/clk_135.v",
       "ModuleLine" : 10,
@@ -25,7 +25,7 @@
      },
      {
       "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/v9958_top.v",
-      "InstLine" : 130,
+      "InstLine" : 140,
       "InstName" : "clk_sdramp_inst",
       "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/gowin/clk_108p.v",
       "ModuleLine" : 10,
@@ -33,7 +33,7 @@
      },
      {
       "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/v9958_top.v",
-      "InstLine" : 156,
+      "InstLine" : 166,
       "InstName" : "vram",
       "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/memory_controller.v",
       "ModuleLine" : 1,
@@ -51,7 +51,23 @@
      },
      {
       "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/v9958_top.v",
-      "InstLine" : 282,
+      "InstLine" : 220,
+      "InstName" : "cswn_filter",
+      "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/pinfilter.v",
+      "ModuleLine" : 1,
+      "ModuleName" : "PINFILTER"
+     },
+     {
+      "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/v9958_top.v",
+      "InstLine" : 228,
+      "InstName" : "csrn_filter",
+      "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/pinfilter.v",
+      "ModuleLine" : 1,
+      "ModuleName" : "PINFILTER"
+     },
+     {
+      "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/v9958_top.v",
+      "InstLine" : 279,
       "InstName" : "u_v9958",
       "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/vdp/vdp.vhd",
       "ModuleLine" : 254,
@@ -161,7 +177,7 @@
        },
        {
         "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/vdp/vdp.vhd",
-        "InstLine" : 1522,
+        "InstLine" : 1523,
         "InstName" : "U_VDP_COLORDEC",
         "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/vdp/vdp_colordec.vhd",
         "ModuleLine" : 68,
@@ -169,7 +185,7 @@
        },
        {
         "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/vdp/vdp.vhd",
-        "InstLine" : 1570,
+        "InstLine" : 1571,
         "InstName" : "U_VDP_TEXT12",
         "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/vdp/vdp_text12.vhd",
         "ModuleLine" : 104,
@@ -177,7 +193,7 @@
        },
        {
         "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/vdp/vdp.vhd",
-        "InstLine" : 1594,
+        "InstLine" : 1595,
         "InstName" : "U_VDP_GRAPHIC123M",
         "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/vdp/vdp_graphic123m.vhd",
         "ModuleLine" : 86,
@@ -185,7 +201,7 @@
        },
        {
         "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/vdp/vdp.vhd",
-        "InstLine" : 1617,
+        "InstLine" : 1618,
         "InstName" : "U_VDP_GRAPHIC4567",
         "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/vdp/vdp_graphic4567.vhd",
         "ModuleLine" : 97,
@@ -203,7 +219,7 @@
        },
        {
         "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/vdp/vdp.vhd",
-        "InstLine" : 1650,
+        "InstLine" : 1651,
         "InstName" : "U_SPRITE",
         "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/vdp/vdp_sprite.vhd",
         "ModuleLine" : 183,
@@ -237,7 +253,7 @@
        },
        {
         "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/vdp/vdp.vhd",
-        "InstLine" : 1690,
+        "InstLine" : 1691,
         "InstName" : "U_VDP_REGISTER",
         "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/vdp/vdp_register.vhd",
         "ModuleLine" : 89,
@@ -263,7 +279,7 @@
        },
        {
         "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/vdp/vdp.vhd",
-        "InstLine" : 1807,
+        "InstLine" : 1808,
         "InstName" : "U_VDP_COMMAND",
         "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/vdp/vdp_command.vhd",
         "ModuleLine" : 67,
@@ -271,7 +287,7 @@
        },
        {
         "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/vdp/vdp.vhd",
-        "InstLine" : 1840,
+        "InstLine" : 1841,
         "InstName" : "U_VDP_WAIT_CONTROL",
         "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/vdp/vdp_wait_control.vhd",
         "ModuleLine" : 59,
@@ -281,7 +297,15 @@
      },
      {
       "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/v9958_top.v",
-      "InstLine" : 475,
+      "InstLine" : 406,
+      "InstName" : "audioclkd",
+      "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/clockdiv.v",
+      "ModuleLine" : 1,
+      "ModuleName" : "CLOCK_DIV"
+     },
+     {
+      "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/v9958_top.v",
+      "InstLine" : 444,
       "InstName" : "hdmi_ntsc",
       "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/hdmi/hdmi.sv",
       "ModuleLine" : 4,
@@ -373,7 +397,7 @@
      },
      {
       "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/v9958_top.v",
-      "InstLine" : 503,
+      "InstLine" : 470,
       "InstName" : "hdmi_pal",
       "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/hdmi/hdmi.sv",
       "ModuleLine" : 4,
@@ -465,7 +489,7 @@
      },
      {
       "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/v9958_top.v",
-      "InstLine" : 522,
+      "InstLine" : 489,
       "InstName" : "serializer",
       "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/hdmi/serializer.sv",
       "ModuleLine" : 3,
@@ -475,7 +499,7 @@
    },
    {
     "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/MSX_Interceptor.vhd",
-    "InstLine" : 357,
+    "InstLine" : 363,
     "InstName" : "psg1",
     "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/PSG_YM2149/YM2149.vhdl",
     "ModuleLine" : 62,
@@ -483,7 +507,7 @@
    },
    {
     "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/MSX_Interceptor.vhd",
-    "InstLine" : 398,
+    "InstLine" : 404,
     "InstName" : "opll1",
     "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/OCM_3.9/sound/opll/vm2413/opll.vhd",
     "ModuleLine" : 41,
@@ -695,7 +719,7 @@
    },
    {
     "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/MSX_Interceptor.vhd",
-    "InstLine" : 413,
+    "InstLine" : 419,
     "InstName" : "filtro_fm",
     "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/fm_filter/fm_filter.v",
     "ModuleLine" : 3,
@@ -785,7 +809,15 @@
    },
    {
     "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/MSX_Interceptor.vhd",
-    "InstLine" : 426,
+    "InstLine" : 467,
+    "InstName" : "fmrom",
+    "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/src/ram_16kb.v",
+    "ModuleLine" : 1,
+    "ModuleName" : "ram_16kb"
+   },
+   {
+    "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/MSX_Interceptor.vhd",
+    "InstLine" : 478,
     "InstName" : "denoise1",
     "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low.vhd",
     "ModuleLine" : 5,
@@ -793,7 +825,7 @@
    },
    {
     "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/MSX_Interceptor.vhd",
-    "InstLine" : 433,
+    "InstLine" : 485,
     "InstName" : "denoise2",
     "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low.vhd",
     "ModuleLine" : 5,
@@ -801,7 +833,7 @@
    },
    {
     "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/MSX_Interceptor.vhd",
-    "InstLine" : 440,
+    "InstLine" : 492,
     "InstName" : "denoise3",
     "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low.vhd",
     "ModuleLine" : 5,
@@ -809,7 +841,7 @@
    },
    {
     "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/MSX_Interceptor.vhd",
-    "InstLine" : 447,
+    "InstLine" : 499,
     "InstName" : "denoise4",
     "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low.vhd",
     "ModuleLine" : 5,
@@ -817,7 +849,7 @@
    },
    {
     "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/MSX_Interceptor.vhd",
-    "InstLine" : 454,
+    "InstLine" : 506,
     "InstName" : "denoise5",
     "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low.vhd",
     "ModuleLine" : 5,
@@ -825,7 +857,7 @@
    },
    {
     "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/MSX_Interceptor.vhd",
-    "InstLine" : 461,
+    "InstLine" : 513,
     "InstName" : "denoise6",
     "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low.vhd",
     "ModuleLine" : 5,
@@ -833,7 +865,15 @@
    },
    {
     "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/MSX_Interceptor.vhd",
-    "InstLine" : 468,
+    "InstLine" : 520,
+    "InstName" : "denoise7",
+    "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low.vhd",
+    "ModuleLine" : 5,
+    "ModuleName" : "denoise_low"
+   },
+   {
+    "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/MSX_Interceptor.vhd",
+    "InstLine" : 527,
     "InstName" : "denoise8_1",
     "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low8.vhd",
     "ModuleLine" : 4,
@@ -907,7 +947,81 @@
    },
    {
     "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/MSX_Interceptor.vhd",
-    "InstLine" : 475,
+    "InstLine" : 534,
+    "InstName" : "denoise8_1b",
+    "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low8.vhd",
+    "ModuleLine" : 4,
+    "ModuleName" : "denoise_low8",
+    "SubInsts" : [
+     {
+      "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low8.vhd",
+      "InstLine" : 29,
+      "InstName" : "denoise[0].denoise8",
+      "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low.vhd",
+      "ModuleLine" : 5,
+      "ModuleName" : "denoise_low"
+     },
+     {
+      "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low8.vhd",
+      "InstLine" : 29,
+      "InstName" : "denoise[1].denoise8",
+      "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low.vhd",
+      "ModuleLine" : 5,
+      "ModuleName" : "denoise_low"
+     },
+     {
+      "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low8.vhd",
+      "InstLine" : 29,
+      "InstName" : "denoise[2].denoise8",
+      "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low.vhd",
+      "ModuleLine" : 5,
+      "ModuleName" : "denoise_low"
+     },
+     {
+      "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low8.vhd",
+      "InstLine" : 29,
+      "InstName" : "denoise[3].denoise8",
+      "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low.vhd",
+      "ModuleLine" : 5,
+      "ModuleName" : "denoise_low"
+     },
+     {
+      "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low8.vhd",
+      "InstLine" : 29,
+      "InstName" : "denoise[4].denoise8",
+      "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low.vhd",
+      "ModuleLine" : 5,
+      "ModuleName" : "denoise_low"
+     },
+     {
+      "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low8.vhd",
+      "InstLine" : 29,
+      "InstName" : "denoise[5].denoise8",
+      "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low.vhd",
+      "ModuleLine" : 5,
+      "ModuleName" : "denoise_low"
+     },
+     {
+      "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low8.vhd",
+      "InstLine" : 29,
+      "InstName" : "denoise[6].denoise8",
+      "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low.vhd",
+      "ModuleLine" : 5,
+      "ModuleName" : "denoise_low"
+     },
+     {
+      "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low8.vhd",
+      "InstLine" : 29,
+      "InstName" : "denoise[7].denoise8",
+      "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low.vhd",
+      "ModuleLine" : 5,
+      "ModuleName" : "denoise_low"
+     }
+    ]
+   },
+   {
+    "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/MSX_Interceptor.vhd",
+    "InstLine" : 541,
     "InstName" : "denoise8_2",
     "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/Denoise/denoise_low8.vhd",
     "ModuleLine" : 4,
@@ -978,6 +1092,14 @@
       "ModuleName" : "denoise_low"
      }
     ]
+   },
+   {
+    "InstFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/MSX_Interceptor.vhd",
+    "InstLine" : 548,
+    "InstName" : "mono1",
+    "ModuleFile" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/monostable/monostable.vhd",
+    "ModuleLine" : 7,
+    "ModuleName" : "monostable"
    }
   ]
  },

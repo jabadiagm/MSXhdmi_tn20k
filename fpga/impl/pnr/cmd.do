@@ -3,7 +3,7 @@
 -pn GW2AR-LV18QN88C8/I7
 -cst D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tang9k.cst
 -cfg D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\impl\pnr\device.cfg
--sdc D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958.sdc
+-sdc D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\src\MSX_hdmi_tn20k.sdc
 -bit
 -tr
 -ph

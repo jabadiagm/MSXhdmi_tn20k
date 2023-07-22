@@ -12,10 +12,10 @@ entity MSX_Interceptor is
 
 	   --74lvc245 buffer signals
 	    --address bus
-		ex_busAddress    : in std_logic_vector(7 downto 0);
+		ex_busAddress    : in std_logic_vector(15 downto 0);
 
 		--data bus
-		ex_busDataOut     : in std_logic_vector(7 downto 0);
+		ex_busDataOut     : inout std_logic_vector(7 downto 0);
 		
 		--control bus
 		ex_busMreq_n     : in std_logic;
@@ -23,7 +23,11 @@ entity MSX_Interceptor is
 		ex_busRd_n       : in std_logic;
 		ex_busWr_n       : in std_logic;
 		ex_busReset_n    : in std_logic;
-		ex_clk_3m6         : in std_logic;
+		ex_clk_3m6       : in std_logic;
+        ex_bus_sltsl_n   : in std_logic;
+
+        --bus direction
+        ex_bus_data_reverse_n : out std_logic;
 		
 		--interrupt
 		--ex_int_n         : out std_logic;
@@ -50,15 +54,16 @@ entity MSX_Interceptor is
         O_sdram_addr : out std_logic_vector (10 downto 0); -- 11 bit multiplexed address bus
         O_sdram_ba : out std_logic_vector(1 downto 0); -- two banks
         O_sdram_dqm  : out std_logic_vector(3 downto 0); -- 32/4	
-
-        ex_led          : out  STD_LOGIC_VECTOR (5 downto 0)
+        
+        ex_led          : out  STD_LOGIC
+        --ex_led          : out  STD_LOGIC_VECTOR (5 downto 0)
 
 	);
 end MSX_Interceptor;
 
 architecture struct of MSX_Interceptor is
 
-	signal busAddress	            : std_logic_vector(7 downto 0);
+	signal busAddress	            : std_logic_vector(15 downto 0);
 	signal busDataOut               : std_logic_vector(7 downto 0);
 		
 	signal busMreq_n                : std_logic;
@@ -67,6 +72,7 @@ architecture struct of MSX_Interceptor is
 	signal busWr_n                  : std_logic;
 	signal busReset_n               : std_logic;
 	signal clk_3m6                  : std_logic;
+    signal bus_sltsl_n              : std_logic;
 
 	signal memWr_n					: std_logic :='1';
 	signal memRd_n 					: std_logic :='1';
@@ -75,11 +81,6 @@ architecture struct of MSX_Interceptor is
 	signal ioRd_n 					: std_logic :='1';
 	
     signal clk_1m8                  : std_logic:='0'; --psg clock 3.57/2 = 1.8 MHz   
-    signal clk_21m4                 : std_logic;
-    signal clk_360k                     : std_logic := '0';
-    signal clk_360k_counter             : std_logic_vector (3 downto 0);    
-    signal clk_36k                     : std_logic := '0';
-    signal clk_36k_counter             : std_logic_vector (3 downto 0);    
 
     signal reset : std_logic:='0';
     signal reset_n : std_logic;
@@ -117,7 +118,12 @@ architecture struct of MSX_Interceptor is
     signal interclock3_state: type_state_4 := state1;
     signal clk_enable_state             : type_state_4:=state1;
 
-
+    --fmrom signals
+    signal fmrom_read       : std_logic;
+    signal fmrom_dout       : std_logic_vector (7 downto 0);
+    signal fmrom_counter    : std_logic_vector (4 downto 0);
+    signal fmrom_state      : std_logic_vector (1 downto 0);
+    signal bus_data_reverse : std_logic;
 
 component denoise_low
     port (
@@ -245,7 +251,25 @@ component fm_filter
     );
 end component;
 
-	
+ component ram_16kb 
+	PORT
+	(
+		address		: IN STD_LOGIC_VECTOR (13 DOWNTO 0);
+		clock		: IN STD_LOGIC  := '1';
+		data		: IN STD_LOGIC_VECTOR (7 DOWNTO 0);
+		wren		: IN STD_LOGIC ;
+		q		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
+	);
+END component;  
+
+component  monostable
+    port (
+		pulse_in    : in std_logic;
+		clock       : in std_logic;
+		pulse_out_n : out std_logic
+	);
+end component;
+
 begin
 
 -- ____________________________________________________________________________________
@@ -258,28 +282,10 @@ process (clk_3m6)
 begin
     if rising_edge(clk_3m6) then
         clk_1m8<=not clk_1m8;
-        if clk_360k_counter < 4 then
-            clk_360k_counter <= clk_360k_counter+1;
-        else
-            clk_360k_counter <= (others => '0');
-            clk_360k <= not clk_360k;
-        end if;        
 
     end if;
 end process;
 
-process (clk_360k)
-begin
-    if rising_edge(clk_360k) then
-        if clk_36k_counter < 4 then
-            clk_36k_counter <= clk_36k_counter+1;
-        else
-            clk_36k_counter <= (others => '0');
-            clk_36k <= not clk_36k;
-        end if;        
-
-    end if;
-end process;
 
 
 -- ____________________________________________________________________________________
@@ -293,8 +299,8 @@ memRd_n <= busRd_n or busMreq_n;
 
 -- ____________________________________________________________________________________
 -- BUS ISOLATION GOES HERE
---ex_busDataReverse_n <= '0' when (vdp_req = '1' and ex_busRd_n = '0') else '1';
---ex_busDataOut <= VdpDbi when (ex_busDataReverse_n = '0') else (others => 'Z');
+ex_bus_data_reverse_n <= not bus_data_reverse;
+ex_busDataOut <= fmrom_dout when (bus_data_reverse = '1') else (others => 'Z');
 
 
 
@@ -423,6 +429,52 @@ filtro_fm : fm_filter
     );
 
 
+--fm rom and signals
+fmrom_read <= '1' when (busMreq_n='0') and (bus_sltsl_n = '0') and busReset_n = '1' else '0';
+
+process (ex_clk_27m, reset)
+begin
+    if reset = '1' then
+        fmrom_counter <= (others => '0');
+        fmrom_state <= "00";
+
+    elsif rising_edge(ex_clk_27m) then
+        case fmrom_state is
+            when "00" =>
+                if fmrom_read = '1' then
+                    fmrom_state <= "01";
+                end if;
+            when "01" =>
+                fmrom_counter <= fmrom_counter + 1;
+                if fmrom_counter > 2 then
+                    bus_data_reverse <= '1';
+                    fmrom_state <= "10";
+                end if;
+            when "10" =>
+                fmrom_counter <= (others => '0');
+                if fmrom_read = '0' then
+                    bus_data_reverse <= '0';
+                    fmrom_state <= "00";
+                end if;
+            when others =>
+                fmrom_state <= "00"; 
+        
+        end case;
+
+    end if;
+end process;
+
+fmrom: ram_16kb
+    port map
+    (
+        address => busAddress(13 downto 0),
+        clock => clk_3m6,
+        data => busDataOut,
+        wren => '0',
+        q => fmrom_dout
+    );
+
+
 denoise1: denoise_low
 	port map (
 		data_in => ex_busMreq_n,
@@ -465,11 +517,25 @@ denoise6: denoise_low
 		data_out => clk_3m6
 	);
 
+denoise7: denoise_low
+	port map (
+		data_in => ex_bus_sltsl_n,
+		clock => ex_clk_27m,
+		data_out => bus_sltsl_n
+	);
+
 denoise8_1: denoise_low8
     port map (
-		data8_in    => ex_busAddress,
+		data8_in    => ex_busAddress(7 downto 0),
 		clock		=> ex_clk_27m,
-		data8_out	=> busAddress
+		data8_out	=> busAddress(7 downto 0)
+    );
+
+denoise8_1b: denoise_low8
+    port map (
+		data8_in    => ex_busAddress(15 downto 8),
+		clock		=> ex_clk_27m,
+		data8_out	=> busAddress(15 downto 8)
     );
 
 denoise8_2: denoise_low8
@@ -479,7 +545,15 @@ denoise8_2: denoise_low8
 		data8_out	=> busDataOut
     );
 
-ex_led <= not psgDebug(5 downto 0);
+ mono1 : monostable 
+    port map (
+		pulse_in    => fmrom_read,
+		clock       => ex_clk_27m,
+		pulse_out_n => ex_led
+	);
+
+--ex_led <= not psgDebug(5 downto 0);
+--ex_led <= '0';
 
 
 end;

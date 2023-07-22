@@ -4,7 +4,7 @@ module v9958_top(
     input   clk,
 //    input   clk_50,
 //    input   clk_125,
-//    input   clk_93,
+ //   input   clk_111,
 
     input   s1,
 
@@ -22,10 +22,10 @@ module v9958_top(
 
     input [15:0] audio_sample,
 
-    //output  adc_clk,
-    //output  adc_cs,
-    //output  adc_mosi,
-    //input   adc_miso,
+//    output  adc_clk,
+//    output  adc_cs,
+//    output  adc_mosi,
+//    input   adc_miso,
 
     //output  [1:0]   led,
 
@@ -108,9 +108,19 @@ module v9958_top(
     .O(clk_50_w),
     .I(clk_50)
     );
+    wire clk_125_w;
+    BUFG clk_125_bufg_inst(
+    .O(clk_125_w),
+    .I(clk_125)
+    );
 
-    reg rst_n = 0;
-    always @(posedge clk_w) rst_n <= ~s1;
+    reg s1_n = 0;
+    always @(posedge clk_w) s1_n <= ~s1;
+
+    BUFG rst_bufg_inst(
+    .O(rst_n),
+    .I(s1_n)
+    );
 
     CLK_135 clk_135_inst(
         .clkout(clk_135), //output clkout
@@ -197,43 +207,30 @@ module v9958_top(
     wire csw_next;
     reg csrn_sdram_r;
     reg cswn_sdram_r;
-    wire cswn_w;
-    wire csrn_w;
 
  
-    //assign cd = csr_n == 0 ? CpuDbi : 8'bzzzzzzzz;
+//    assign cd = csr_n == 0 ? CpuDbi : 8'bzzzzzzzz;
     assign cdi = CpuDbi;
 
     assign VDP_ID  =  5'b00010; // V9958
-    assign OFFSET_Y =  6'd16; //6'b0010011;
+    assign OFFSET_Y =  6'd16; 
     assign scanlin = ~scanlin_n;
 
+    wire cswn_w;
+    PINFILTER cswn_filter (
+        .clk(clk_sdram_w),
+        .reset_n(reset_n_w),
+        .din(csw_n),
+        .dout(cswn_w)
+    );
 
-    always @(posedge clk_sdram_w or negedge reset_n_w) begin
-        if(reset_n_w == 0) begin
-            csr_sync_r = 2'b11;
-            csrn_sdram_r = 1'b1;
-
-            csw_sync_r = 2'b11;
-            cswn_sdram_r = 1'b1;
-
-        end
-        else begin
-
-            csr_sync_r = { csr_sync_r[0], csr_n };
-            csrn_sdram_r = csr_next;
-
-            csw_sync_r = { csw_sync_r[0], csw_n };
-            cswn_sdram_r = csw_next;
-
-        end
-    end
-
-    assign csr_next = (csr_sync_r == 2'b00) ? 1'b0 : (csr_sync_r == 2'b11 ? 1'b1 : csr_next);
-    assign csrn_w = csrn_sdram_r;
-
-    assign csw_next = (csw_sync_r == 2'b00) ? 1'b0 : (csw_sync_r == 2'b11 ? 1'b1 : csw_next);
-    assign cswn_w = cswn_sdram_r;
+    wire csrn_w;
+    PINFILTER csrn_filter (
+        .clk(clk_sdram_w),
+        .reset_n(reset_n_w),
+        .din(csr_n),
+        .dout(csrn_w)
+    );
 
 	reg			    CpuReq;
 	reg 			CpuWrt;
@@ -275,7 +272,7 @@ module v9958_top(
         end
     end
 
-    wire vdp_pal_mode;
+    wire pal_mode;
     wire vdp_hdmi_reset;
     wire [10:0] vdp_cx;
     wire [10:0] vdp_cy;
@@ -313,7 +310,7 @@ module v9958_top(
 		.VDP_ID				( VDP_ID							),
 		.OFFSET_Y			( OFFSET_Y							),
         .HDMI_RESET         ( vdp_hdmi_reset                    ),
-        .PAL_MODE           ( vdp_pal_mode                      ),
+        .PAL_MODE           ( pal_mode                      ),
         .SPMAXSPR           ( ~maxspr_n                         ),  
         .CX                 ( vdp_cx                            ),
         .CY                 ( vdp_cy                            )
@@ -336,53 +333,39 @@ module v9958_top(
 
 ///////////
 
-    localparam CPUCLK_SRCFRQ = 50.0;
-    localparam CPUCLK_FRQ = 315.0/88.0;
-    localparam integer CPUCLK_DELAY = $floor(CPUCLK_SRCFRQ / CPUCLK_FRQ / 2 + 0.5);
-    logic [$clog2(CPUCLK_DELAY)-1:0] cpuclk_divider;
-    logic clk_cpu;
+//    wire clk_cpu;
+//    CLOCK_DIV #(
+//        .CLK_SRC(125.0),
+//        .CLK_DIV(315.0/88.0),
+//        .PRECISION_BITS(16)
+//    ) cpuclkd (
+//        .clk_src(clk_125_w),
+//        .clk_div(clk_cpu)
+//    );
+//    BUFG clk_cpuclk_bufg_inst(
+//    .O(cpuclk_w),
+//    .I(clk_cpu)
+//    );
 
-    always_ff@(posedge clk_50_w) 
-    begin
-        if (cpuclk_divider != CPUCLK_DELAY - 1) 
-            cpuclk_divider++;
-        else begin 
-            clk_cpu <= ~clk_cpu; 
-            cpuclk_divider <= 0; 
-        end
-    end
-    BUFG clk_cpuclk_bufg_inst(
-    .O(cpuclk_w),
-    .I(clk_cpu)
-    );
+//    wire clk_grom;
+//    CLOCK_DIV #(
+//        .CLK_SRC(125.0),
+//        .CLK_DIV(3.58/8.0),
+//        .PRECISION_BITS(16)
+//    ) gromclkd (
+//        .clk_src(clk_125_w),
+//        .clk_div(clk_grom)
+//    );
 
-
-//    localparam GROMCLK_SRCFRQ = 50.0;
-//    localparam GROMCLK_FRQ = 315.0/88.0 / 8.0;
-//    localparam integer GROMCLK_DELAY = $floor(GROMCLK_SRCFRQ / GROMCLK_FRQ / 2.0 + 0.5);
-//    logic [$clog2(GROMCLK_DELAY)-1:0] gromclk_divider;
-//    logic clk_grom;
-
-//    always_ff@(posedge clk_50_w) 
-//    begin
-//        if (gromclk_divider != GROMCLK_DELAY - 1) 
-//            gromclk_divider++;
-//        else begin 
-//            clk_grom <= ~clk_grom;
-//            gromclk_divider <= 0; 
-//        end
-//    end
 //    BUFG clk_gromclk_bufg_inst(
 //    .O(gromclk_w),
 //    .I(clk_grom)
 //    );
 
-//    assign gromclk = (gromclk_ena_n ? cpuclk_w: gromclk_w); 
+//    assign gromclk = (gromclk_ena_n ? (cpuclk_ena_n ? cpuclk_w : 1'b1) : gromclk_w); 
 //    assign cpuclk = (cpuclk_ena_n ? 1'bz : cpuclk_w);
 //////////
 
-    reg ff_pal_mode;
-    wire pal_mode;
     reg ff_video_reset;
 
     localparam NTSC_Y = 525-40;
@@ -397,9 +380,9 @@ module v9958_top(
         
         ff_video_reset <= vdp_hdmi_reset;
 
-        if (vdp_cx == 11'b0 && vdp_cy == 11'b0) begin
-            if ((pal_mode == 1'b0 && (vdp_cx != cx_ntsc || vdp_cy != cy_ntsc)) ||
-                (pal_mode == 1'b1 && (vdp_cx != cx_pal || vdp_cy != cy_pal)))
+        if (vdp_cx == 11'd0 && vdp_cy == 11'd0) begin
+            if ((pal_mode == 1'b0 && (cx_ntsc != 10'd0 || cy_ntsc != NTSC_Y)) ||
+                (pal_mode == 1'b1 && (cx_pal != 10'd0 || cy_pal != PAL_Y)))
                 ff_video_reset <= 1'b1;
         end
     end
@@ -407,38 +390,24 @@ module v9958_top(
     wire video_reset;
     assign video_reset = ff_video_reset;
 
-    always_ff@(posedge clk_w or negedge reset_n_w) 
-    begin        
-        if (!reset_n_w)
-            ff_pal_mode <= 1'b0;
-        else
-        if (video_reset)
-            ff_pal_mode <= vdp_pal_mode;
-    end
-    assign pal_mode = ff_pal_mode;
     wire hdmi_reset;
     assign hdmi_reset = video_reset | reset_w | ~ram_enabled;
-
 
     localparam CLKFRQ = 27000;
     localparam AUDIO_RATE=44100;
     localparam AUDIO_BIT_WIDTH = 16;
-    localparam integer AUDIO_CLK_DELAY = $floor(CLKFRQ * 1000.0 / AUDIO_RATE / 2.0 + 0.5);
     localparam NUM_CHANNELS = 3;
-    logic [$clog2(AUDIO_CLK_DELAY)-1:0] audio_divider;
-    logic clk_audio;
-    logic clk_audio_w;
 
-    always_ff@(posedge clk) 
-    begin
-        if (audio_divider != AUDIO_CLK_DELAY - 1) 
-            audio_divider++;
-        else begin 
-            clk_audio <= ~clk_audio; 
-            audio_divider <= 0; 
-        end
-    end
-    BUFG clk_clock_bufg_inst(
+    wire clk_audio;
+    CLOCK_DIV #(
+        .CLK_SRC(27),
+        .CLK_DIV(0.044100),
+        .PRECISION_BITS(16)
+    ) audioclkd (
+        .clk_src(clk_w),
+        .clk_div(clk_audio)
+    );
+    BUFG clk_audio_bufg_inst(
     .O(clk_audio_w),
     .I(clk_audio)
     );
@@ -454,9 +423,9 @@ module v9958_top(
         audio_sample_word0[1] <= sample_w;
         audio_sample_word[1] <= audio_sample_word0[1];
     end
+    wire [15:0] audio_sample_word_w [1:0];
+    assign audio_sample_word_w = audio_sample_word;
 
-    logic [9:0] cy_ntsc;
-    logic [9:0] cx_ntsc;
     logic [9:0] tmds_ntsc [NUM_CHANNELS-1:0];
     hdmi #( .VIDEO_ID_CODE(2), 
             .DVI_OUTPUT(0), 
@@ -477,14 +446,12 @@ module v9958_top(
           .clk_audio(clk_audio_w),
           .rgb({dvi_r, dvi_g, dvi_b}), 
           .reset( hdmi_reset ),
-          .audio_sample_word(audio_sample_word),
+          .audio_sample_word(audio_sample_word_w),
           .cx(cx_ntsc), 
           .cy(cy_ntsc),
           .tmds_internal(tmds_ntsc)
         );
 
-    logic [9:0] cy_pal;
-    logic [9:0] cx_pal;
     logic [9:0] tmds_pal [NUM_CHANNELS-1:0];
     hdmi #( .VIDEO_ID_CODE(17), 
             .DVI_OUTPUT(0), 
@@ -505,7 +472,7 @@ module v9958_top(
           .clk_audio(clk_audio_w),
           .rgb({dvi_r, dvi_g, dvi_b}), 
           .reset( hdmi_reset ),
-          .audio_sample_word(audio_sample_word),
+          .audio_sample_word(audio_sample_word_w),
           .cx(cx_pal), 
           .cy(cy_pal),
           .tmds_internal(tmds_pal)
@@ -551,20 +518,22 @@ module v9958_top(
 
 //    localparam SCKCLK_SRCFRQ = 135.0;
 //    localparam SCKCLK_FRQ = 0.9;
-//    localparam integer SCKCLK_DELAY = $floor(SCKCLK_SRCFRQ / SCKCLK_FRQ / 2.0 + 0.5);
-//    logic [$clog2(SCKCLK_DELAY)-1:0] sckclk_divider;
+//    localparam integer SCKCLK_DELAY0 = $floor(SCKCLK_SRCFRQ / SCKCLK_FRQ / 2.0);
+//    localparam integer SCKCLK_DELAY1 = SCKCLK_DELAY0 + $floor((SCKCLK_SRCFRQ / SCKCLK_FRQ) - SCKCLK_DELAY0 + 0.5);
+//    logic [$clog2(SCKCLK_DELAY1)-1:0] sckclk_divider;
 //    logic clk_sck;
 
-//    always_ff@(posedge clk_135_w) 
-//    begin
-//        if (sckclk_divider != SCKCLK_DELAY - 1) 
-//            sckclk_divider++;
-//        else begin 
-//            clk_sck <= ~clk_sck;
-//            sckclk_divider <= 0; 
-//        end
-//    end
-//    BUFG clk_sckclk_bufg_inst(
+
+//    wire clk_sck;
+//    CLOCK_DIV #(
+//        .CLK_SRC(135),
+//        .CLK_DIV(0.9),
+//        .PRECISION_BITS(16)
+//    ) adcclkd (
+//        .clk_src(clk_135_w),
+//        .clk_div(clk_sck)
+//    );
+//    BUFG clk_sck_bufg_inst(
 //    .O(sckclk_w),
 //    .I(clk_sck)
 //    );
@@ -576,7 +545,6 @@ module v9958_top(
 //        if (sample_valid)
 //            adc_sample <= { audio_sample[11:0], 4'b0 };
 //    end
-//    assign sample_w = adc_sample;
 
 //    wire [31:0] adc_sample_w;
 //    assign adc_sample_w = { adc_sample, 16'b0 };

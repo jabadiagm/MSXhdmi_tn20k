@@ -9,6 +9,14 @@
    "Type" : "verilog"
   },
   {
+   "Path" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/src/ram_16kb.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/clockdiv.v",
+   "Type" : "verilog"
+  },
+  {
    "Path" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/gowin/clk_108p.v",
    "Type" : "verilog"
   },
@@ -58,6 +66,10 @@
   },
   {
    "Path" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/memory_controller.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/pinfilter.v",
    "Type" : "verilog"
   },
   {
@@ -196,6 +208,11 @@
   {
    "Library" : "work",
    "Path" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/PSG_YM2149/YM2149.vhdl",
+   "Type" : "vhdl"
+  },
+  {
+   "Library" : "work",
+   "Path" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/monostable/monostable.vhd",
    "Type" : "vhdl"
   },
   {

@@ -7,6 +7,8 @@
     <FileList>
         <File path="fm_filter/fm_filter.v" type="file.verilog" enable="1"/>
         <File path="fm_filter/inter_clock.v" type="file.verilog" enable="1"/>
+        <File path="src/ram_16kb.v" type="file.verilog" enable="1"/>
+        <File path="tn_vdp_v3_v9958/src/clockdiv.v" type="file.verilog" enable="1"/>
         <File path="tn_vdp_v3_v9958/src/gowin/clk_108p.v" type="file.verilog" enable="1"/>
         <File path="tn_vdp_v3_v9958/src/gowin/clk_135.v" type="file.verilog" enable="1"/>
         <File path="tn_vdp_v3_v9958/src/hdmi/audio_clock_regeneration_packet.sv" type="file.verilog" enable="1"/>
@@ -20,6 +22,7 @@
         <File path="tn_vdp_v3_v9958/src/hdmi/source_product_description_info_frame.sv" type="file.verilog" enable="1"/>
         <File path="tn_vdp_v3_v9958/src/hdmi/tmds_channel.sv" type="file.verilog" enable="1"/>
         <File path="tn_vdp_v3_v9958/src/memory_controller.v" type="file.verilog" enable="1"/>
+        <File path="tn_vdp_v3_v9958/src/pinfilter.v" type="file.verilog" enable="1"/>
         <File path="tn_vdp_v3_v9958/src/sdram.v" type="file.verilog" enable="1"/>
         <File path="tn_vdp_v3_v9958/src/v9958_top.v" type="file.verilog" enable="1"/>
         <File path="Denoise/denoise_low.vhd" type="file.vhdl" enable="1"/>
@@ -48,6 +51,7 @@
         <File path="OCM_3.9/sound/opll/vm2413/voicememory.vhd" type="file.vhdl" enable="1"/>
         <File path="OCM_3.9/sound/opll/vm2413/voicerom.vhd" type="file.vhdl" enable="1"/>
         <File path="PSG_YM2149/YM2149.vhdl" type="file.vhdl" enable="1"/>
+        <File path="monostable/monostable.vhd" type="file.vhdl" enable="1"/>
         <File path="tn_vdp_v3_v9958/src/ram.vhd" type="file.vhdl" enable="1"/>
         <File path="tn_vdp_v3_v9958/src/vdp/vdp.vhd" type="file.vhdl" enable="1"/>
         <File path="tn_vdp_v3_v9958/src/vdp/vdp_colordec.vhd" type="file.vhdl" enable="1"/>
@@ -69,6 +73,7 @@
         <File path="tn_vdp_v3_v9958/src/vdp/vdp_wait_control.vhd" type="file.vhdl" enable="1"/>
         <File path="tn_vdp_v3_v9958/src/vdp/vencode.vhd" type="file.vhdl" enable="1"/>
         <File path="tang9k.cst" type="file.cst" enable="1"/>
-        <File path="tn_vdp_v3_v9958/src/v9958.sdc" type="file.sdc" enable="1"/>
+        <File path="src/MSX_hdmi_tn20k.sdc" type="file.sdc" enable="1"/>
+        <File path="src/MSX_hdmi_tn20k.rao" type="file.gao" enable="0"/>
     </FileList>
 </Project>

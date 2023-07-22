@@ -1,34 +1,19 @@
 module gw_gao(
-    ex_clk_3m6,
-    \clk_360k_counter[3] ,
-    \clk_360k_counter[2] ,
-    \clk_360k_counter[1] ,
-    \clk_360k_counter[0] ,
-    clk_360k,
-    \clk_36k_counter[3] ,
-    \clk_36k_counter[2] ,
-    \clk_36k_counter[1] ,
-    \clk_36k_counter[0] ,
-    clk_36k,
-    \opll_wav7[31] ,
-    \opll_wav7[30] ,
-    \opll_wav7[29] ,
-    \opll_wav7[28] ,
-    \opll_wav7[27] ,
-    \opll_wav7[26] ,
-    \opll_wav7[25] ,
-    \opll_wav7[24] ,
-    \filtro_fm/clk_1m8 ,
-    \filtro_fm/clk_360k ,
-    \filtro_fm/clk_36k ,
-    \filtro_fm/opll_wav[31] ,
-    \filtro_fm/opll_wav[30] ,
-    \filtro_fm/opll_wav[29] ,
-    \filtro_fm/opll_wav[28] ,
-    \filtro_fm/opll_wav[27] ,
-    \filtro_fm/opll_wav[26] ,
-    \filtro_fm/opll_wav[25] ,
-    \filtro_fm/opll_wav[24] ,
+    ex_bus_sltsl_n,
+    ex_bus_data_reverse_n,
+    fmrom_read,
+    ex_led,
+    busReset_n,
+    bus_sltsl_n,
+    busMreq_n,
+    bus_data_reverse,
+    \fmrom_state[1] ,
+    \fmrom_state[0] ,
+    \fmrom_counter[4] ,
+    \fmrom_counter[3] ,
+    \fmrom_counter[2] ,
+    \fmrom_counter[1] ,
+    \fmrom_counter[0] ,
     ex_clk_27m,
     tms_pad_i,
     tck_pad_i,
@@ -36,72 +21,42 @@ module gw_gao(
     tdo_pad_o
 );
 
-input ex_clk_3m6;
-input \clk_360k_counter[3] ;
-input \clk_360k_counter[2] ;
-input \clk_360k_counter[1] ;
-input \clk_360k_counter[0] ;
-input clk_360k;
-input \clk_36k_counter[3] ;
-input \clk_36k_counter[2] ;
-input \clk_36k_counter[1] ;
-input \clk_36k_counter[0] ;
-input clk_36k;
-input \opll_wav7[31] ;
-input \opll_wav7[30] ;
-input \opll_wav7[29] ;
-input \opll_wav7[28] ;
-input \opll_wav7[27] ;
-input \opll_wav7[26] ;
-input \opll_wav7[25] ;
-input \opll_wav7[24] ;
-input \filtro_fm/clk_1m8 ;
-input \filtro_fm/clk_360k ;
-input \filtro_fm/clk_36k ;
-input \filtro_fm/opll_wav[31] ;
-input \filtro_fm/opll_wav[30] ;
-input \filtro_fm/opll_wav[29] ;
-input \filtro_fm/opll_wav[28] ;
-input \filtro_fm/opll_wav[27] ;
-input \filtro_fm/opll_wav[26] ;
-input \filtro_fm/opll_wav[25] ;
-input \filtro_fm/opll_wav[24] ;
+input ex_bus_sltsl_n;
+input ex_bus_data_reverse_n;
+input fmrom_read;
+input ex_led;
+input busReset_n;
+input bus_sltsl_n;
+input busMreq_n;
+input bus_data_reverse;
+input \fmrom_state[1] ;
+input \fmrom_state[0] ;
+input \fmrom_counter[4] ;
+input \fmrom_counter[3] ;
+input \fmrom_counter[2] ;
+input \fmrom_counter[1] ;
+input \fmrom_counter[0] ;
 input ex_clk_27m;
 input tms_pad_i;
 input tck_pad_i;
 input tdi_pad_i;
 output tdo_pad_o;
 
-wire ex_clk_3m6;
-wire \clk_360k_counter[3] ;
-wire \clk_360k_counter[2] ;
-wire \clk_360k_counter[1] ;
-wire \clk_360k_counter[0] ;
-wire clk_360k;
-wire \clk_36k_counter[3] ;
-wire \clk_36k_counter[2] ;
-wire \clk_36k_counter[1] ;
-wire \clk_36k_counter[0] ;
-wire clk_36k;
-wire \opll_wav7[31] ;
-wire \opll_wav7[30] ;
-wire \opll_wav7[29] ;
-wire \opll_wav7[28] ;
-wire \opll_wav7[27] ;
-wire \opll_wav7[26] ;
-wire \opll_wav7[25] ;
-wire \opll_wav7[24] ;
-wire \filtro_fm/clk_1m8 ;
-wire \filtro_fm/clk_360k ;
-wire \filtro_fm/clk_36k ;
-wire \filtro_fm/opll_wav[31] ;
-wire \filtro_fm/opll_wav[30] ;
-wire \filtro_fm/opll_wav[29] ;
-wire \filtro_fm/opll_wav[28] ;
-wire \filtro_fm/opll_wav[27] ;
-wire \filtro_fm/opll_wav[26] ;
-wire \filtro_fm/opll_wav[25] ;
-wire \filtro_fm/opll_wav[24] ;
+wire ex_bus_sltsl_n;
+wire ex_bus_data_reverse_n;
+wire fmrom_read;
+wire ex_led;
+wire busReset_n;
+wire bus_sltsl_n;
+wire busMreq_n;
+wire bus_data_reverse;
+wire \fmrom_state[1] ;
+wire \fmrom_state[0] ;
+wire \fmrom_counter[4] ;
+wire \fmrom_counter[3] ;
+wire \fmrom_counter[2] ;
+wire \fmrom_counter[1] ;
+wire \fmrom_counter[0] ;
 wire ex_clk_27m;
 wire tms_pad_i;
 wire tck_pad_i;
@@ -176,8 +131,8 @@ gw_con_top  u_icon_top(
 
 ao_top_0  u_la0_top(
     .control(control0[9:0]),
-    .trig0_i(ex_clk_27m),
-    .data_i({ex_clk_3m6,\clk_360k_counter[3] ,\clk_360k_counter[2] ,\clk_360k_counter[1] ,\clk_360k_counter[0] ,clk_360k,\clk_36k_counter[3] ,\clk_36k_counter[2] ,\clk_36k_counter[1] ,\clk_36k_counter[0] ,clk_36k,\opll_wav7[31] ,\opll_wav7[30] ,\opll_wav7[29] ,\opll_wav7[28] ,\opll_wav7[27] ,\opll_wav7[26] ,\opll_wav7[25] ,\opll_wav7[24] ,\filtro_fm/clk_1m8 ,\filtro_fm/clk_360k ,\filtro_fm/clk_36k ,\filtro_fm/opll_wav[31] ,\filtro_fm/opll_wav[30] ,\filtro_fm/opll_wav[29] ,\filtro_fm/opll_wav[28] ,\filtro_fm/opll_wav[27] ,\filtro_fm/opll_wav[26] ,\filtro_fm/opll_wav[25] ,\filtro_fm/opll_wav[24] }),
+    .trig0_i(ex_bus_sltsl_n),
+    .data_i({ex_bus_sltsl_n,ex_bus_data_reverse_n,fmrom_read,ex_led,busReset_n,bus_sltsl_n,busMreq_n,bus_data_reverse,\fmrom_state[1] ,\fmrom_state[0] ,\fmrom_counter[4] ,\fmrom_counter[3] ,\fmrom_counter[2] ,\fmrom_counter[1] ,\fmrom_counter[0] }),
     .clk_i(ex_clk_27m)
 );
 

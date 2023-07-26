@@ -7,6 +7,7 @@
         <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\fm_filter\fm_filter.v" type="verilog"/>
         <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\fm_filter\inter_clock.v" type="verilog"/>
         <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\src\ram_16kb.v" type="verilog"/>
+        <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\clockdiv.v" type="verilog"/>
         <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\gowin\clk_108p.v" type="verilog"/>
         <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\gowin\clk_135.v" type="verilog"/>
         <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\hdmi\audio_clock_regeneration_packet.sv" type="verilog"/>
@@ -20,10 +21,9 @@
         <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\hdmi\source_product_description_info_frame.sv" type="verilog"/>
         <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\hdmi\tmds_channel.sv" type="verilog"/>
         <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\memory_controller.v" type="verilog"/>
+        <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\pinfilter.v" type="verilog"/>
         <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\sdram.v" type="verilog"/>
         <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\v9958_top.v" type="verilog"/>
-        <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\pinfilter.v" type="verilog"/>
-        <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\clockdiv.v" type="verilog"/>
         <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\Denoise\denoise_low.vhd" type="vhdl"/>
         <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\Denoise\denoise_low8.vhd" type="vhdl"/>
         <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\MSX_Interceptor.vhd" type="vhdl"/>
@@ -71,6 +71,8 @@
         <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\vdp\vdp_vga.vhd" type="vhdl"/>
         <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\vdp\vdp_wait_control.vhd" type="vhdl"/>
         <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\tn_vdp_v3_v9958\src\vdp\vencode.vhd" type="vhdl"/>
+        <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\denoise\denoise.vhd" type="vhdl"/>
+        <File path="D:\datos\proyectos\43_Tang_Nano_20k\15_MSX_hdmi_tn20k\denoise\denoise_8.vhd" type="vhdl"/>
     </FileList>
     <OptionList>
         <Option type="disable_insert_pad" value="0"/>

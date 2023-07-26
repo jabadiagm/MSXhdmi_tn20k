@@ -125,6 +125,23 @@ architecture struct of MSX_Interceptor is
     signal fmrom_state      : std_logic_vector (1 downto 0);
     signal bus_data_reverse : std_logic;
 
+component denoise
+    port (
+		data_in		: IN STD_LOGIC;
+		clock		: IN STD_LOGIC;
+		data_out	: OUT STD_LOGIC 
+    );
+end component;
+
+component denoise_8	
+	PORT
+	(
+		data8_in	: IN STD_LOGIC_VECTOR(7 downto 0);
+		clock		: IN STD_LOGIC  := '1';
+		data8_out	: OUT STD_LOGIC_VECTOR(7 downto 0) 
+	);
+end component;
+
 component denoise_low
     port (
 		data_in		: IN STD_LOGIC;
@@ -430,7 +447,7 @@ filtro_fm : fm_filter
 
 
 --fm rom and signals
-fmrom_read <= '1' when (busMreq_n='0') and (bus_sltsl_n = '0') and busReset_n = '1' else '0';
+fmrom_read <= '1' when (busMreq_n='0' and bus_sltsl_n = '0' and busRd_n = '0' and busReset_n = '1') else '0';
 
 process (ex_clk_27m, reset)
 begin
@@ -510,7 +527,7 @@ denoise5: denoise_low
 		data_out => busReset_n
 	);
 
-denoise6: denoise_low
+denoise6: denoise
 	port map (
 		data_in => ex_clk_3m6,
 		clock => ex_clk_27m,
@@ -524,36 +541,36 @@ denoise7: denoise_low
 		data_out => bus_sltsl_n
 	);
 
-denoise8_1: denoise_low8
+denoise8: denoise_8
     port map (
 		data8_in    => ex_busAddress(7 downto 0),
 		clock		=> ex_clk_27m,
 		data8_out	=> busAddress(7 downto 0)
     );
 
-denoise8_1b: denoise_low8
+denoise9: denoise_8
     port map (
 		data8_in    => ex_busAddress(15 downto 8),
 		clock		=> ex_clk_27m,
 		data8_out	=> busAddress(15 downto 8)
     );
 
-denoise8_2: denoise_low8
+denoise10: denoise_8
     port map (
 		data8_in    => ex_busDataOut,
 		clock		=> ex_clk_27m,
 		data8_out	=> busDataOut
     );
 
- mono1 : monostable 
-    port map (
-		pulse_in    => fmrom_read,
-		clock       => ex_clk_27m,
-		pulse_out_n => ex_led
-	);
+-- mono1 : monostable 
+--    port map (
+--		pulse_in    => fmrom_read,
+--		clock       => ex_clk_27m,
+--		pulse_out_n => ex_led
+--	);
 
 --ex_led <= not psgDebug(5 downto 0);
---ex_led <= '0';
+ex_led <= '0';
 
 
 end;

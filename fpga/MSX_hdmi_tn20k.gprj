@@ -51,6 +51,8 @@
         <File path="OCM_3.9/sound/opll/vm2413/voicememory.vhd" type="file.vhdl" enable="1"/>
         <File path="OCM_3.9/sound/opll/vm2413/voicerom.vhd" type="file.vhdl" enable="1"/>
         <File path="PSG_YM2149/YM2149.vhdl" type="file.vhdl" enable="1"/>
+        <File path="denoise/denoise.vhd" type="file.vhdl" enable="1"/>
+        <File path="denoise/denoise_8.vhd" type="file.vhdl" enable="1"/>
         <File path="monostable/monostable.vhd" type="file.vhdl" enable="1"/>
         <File path="tn_vdp_v3_v9958/src/ram.vhd" type="file.vhdl" enable="1"/>
         <File path="tn_vdp_v3_v9958/src/vdp/vdp.vhd" type="file.vhdl" enable="1"/>

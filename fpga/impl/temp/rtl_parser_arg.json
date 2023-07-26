@@ -314,6 +314,16 @@
    "Library" : "work",
    "Path" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/tn_vdp_v3_v9958/src/vdp/vencode.vhd",
    "Type" : "vhdl"
+  },
+  {
+   "Library" : "work",
+   "Path" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/denoise/denoise.vhd",
+   "Type" : "vhdl"
+  },
+  {
+   "Library" : "work",
+   "Path" : "D:/datos/proyectos/43_Tang_Nano_20k/15_MSX_hdmi_tn20k/denoise/denoise_8.vhd",
+   "Type" : "vhdl"
   }
  ],
  "IncludePath" : [

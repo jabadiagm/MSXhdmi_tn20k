@@ -12,26 +12,26 @@
   <Part Number>: GW2AR-LV18QN88C8/I7
   <Device>: GW2AR-18
   <Device Version>: C
-  <Created Time>:Wed Jul 26 19:41:26 2023
+  <Created Time>:Sun Aug 13 21:09:15 2023
 
 
 2. PnR Details
 
   Running placement:
     Placement Phase 0: CPU time = 0h 0m 3s, Elapsed time = 0h 0m 3s
-    Placement Phase 1: CPU time = 0h 0m 0.524s, Elapsed time = 0h 0m 0.525s
-    Placement Phase 2: CPU time = 0h 0m 11s, Elapsed time = 0h 0m 11s
-    Placement Phase 3: CPU time = 0h 0m 11s, Elapsed time = 0h 0m 11s
-    Total Placement: CPU time = 0h 0m 26s, Elapsed time = 0h 0m 26s
+    Placement Phase 1: CPU time = 0h 0m 0.569s, Elapsed time = 0h 0m 0.57s
+    Placement Phase 2: CPU time = 0h 0m 12s, Elapsed time = 0h 0m 12s
+    Placement Phase 3: CPU time = 0h 0m 12s, Elapsed time = 0h 0m 12s
+    Total Placement: CPU time = 0h 0m 28s, Elapsed time = 0h 0m 28s
  Running routing:
-    Routing Phase 0: CPU time = 0h 0m 0.004s, Elapsed time = 0h 0m 0.004s
-    Routing Phase 1: CPU time = 0h 0m 0.649s, Elapsed time = 0h 0m 0.649s
-    Routing Phase 2: CPU time = 0h 0m 10s, Elapsed time = 0h 0m 10s
-    Total Routing: CPU time = 0h 0m 11s, Elapsed time = 0h 0m 11s
+    Routing Phase 0: CPU time = 0h 0m 0.005s, Elapsed time = 0h 0m 0.005s
+    Routing Phase 1: CPU time = 0h 0m 0.689s, Elapsed time = 0h 0m 0.69s
+    Routing Phase 2: CPU time = 0h 0m 13s, Elapsed time = 0h 0m 13s
+    Total Routing: CPU time = 0h 0m 14s, Elapsed time = 0h 0m 14s
  Generate output files:
     CPU time = 0h 0m 5s, Elapsed time = 0h 0m 5s
 
- Total Time and Memory Usage: CPU time = 0h 0m 41s, Elapsed time = 0h 0m 41s, Peak memory usage = 419MB
+ Total Time and Memory Usage: CPU time = 0h 0m 47s, Elapsed time = 0h 0m 47s, Peak memory usage = 577MB
 
 
 3. Resource Usage Summary
@@ -39,32 +39,33 @@
   ----------------------------------------------------------
   Resources                   | Usage
   ----------------------------------------------------------
-  Logic                       | 8155/20736  40%
-    --LUT,ALU,ROM16           | 7813(5849 LUT, 1964 ALU, 0 ROM16)
+  Logic                       | 8655/20736  42%
+    --LUT,ALU,ROM16           | 8313(6211 LUT, 2102 ALU, 0 ROM16)
     --SSRAM(RAM16)            | 57
-  Register                    | 4748/15915  30%
+  Register                    | 5234/15915  33%
     --Logic Register as Latch | 2/15552  <1%
-    --Logic Register as FF    | 4702/15552  31%
+    --Logic Register as FF    | 5186/15552  34%
     --I/O Register as Latch   | 0/363  0%
-    --I/O Register as FF      | 44/363  13%
-  CLS                         | 6088/10368  59%
+    --I/O Register as FF      | 46/363  13%
+  CLS                         | 6580/10368  64%
   I/O Port                    | 44
-  I/O Buf                     | 37
-    --Input Buf               | 23
+  I/O Buf                     | 39
+    --Input Buf               | 25
     --Output Buf              | 6
     --Inout Buf               | 8
   IOLOGIC                     | 5%
     --OSER10                  | 3
-  BSRAM                       | 50%
-    --SP                      | 5
+  BSRAM                       | 53%
+    --SP                      | 6
     --SDPX9B                  | 3
     --pROM                    | 13
     --pROMX9                  | 2
-  DSP                         | 8%
+  DSP                         | 12%
     --PADD9                   | 1
     --PADD18                  | 2
     --MULT9X9                 | 2
     --MULT18X18               | 2
+    --MULTADDALU18X18         | 1
   PLL                         | 2/2  100%
   DCS                         | 0/8  0%
   DQCE                        | 0/24  0%
@@ -112,9 +113,9 @@
   -------------------------------------------
   Signal         | Global Clock   | Location
   -------------------------------------------
-  clk_3m6        | PRIMARY        |  TL BR BL
+  clk_3m6        | PRIMARY        |  TR TL BR BL
   clk_sdram      | PRIMARY        |  TR BL
-  clk_sdramp     | PRIMARY        |  TR TL BR
+  clk_sdramp     | PRIMARY        |  TR TL
   clk_36k        | PRIMARY        |  TL
   ex_clk_3m6_d   | LW             |  -
   ex_clk_27m_d   | LW             |  -

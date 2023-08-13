@@ -84,6 +84,9 @@ architecture struct of MSX_Interceptor is
 
     signal reset : std_logic:='0';
     signal reset_n : std_logic;
+    signal bus_data_reverse : std_logic;
+    signal bus_data_counter      : std_logic_vector (4 downto 0);
+    signal bus_data_state        : std_logic_vector (1 downto 0);
 
 	--YM2149 PSG signals
 	signal psgBc1                        : std_logic:='0'; --psg chip select & mode 1/2
@@ -101,29 +104,36 @@ architecture struct of MSX_Interceptor is
 	signal v9958_csr_n : std_logic:='1'; --VDP read request	
 
     --opll signals
-    signal opll_req          : std_logic; 
+    signal opll_req_n          : std_logic; 
     signal opll_mo           : std_logic_vector (9 downto 0);
     signal opll_ro           : std_logic_vector (9 downto 0);
     signal opll_mix          : std_logic_vector(11 downto 0);
-    signal opll_wav          : std_logic_vector (31 downto 0);
-    signal opll_wav_filter   : std_logic_vector (31 downto 0);
-	signal audio_sample : std_logic_vector (15 downto 0);
-	signal audio_sample1 : std_logic_vector (15 downto 0);
-	signal audio_sample2 : std_logic_vector (15 downto 0);
-    signal clk_enable                   : std_logic := '0';
-    signal clk_enable_counter           : std_logic_vector (2 downto 0):=(others=>'0');
-    type type_state_4 is (state1, state2, state3, state4);
-    signal interclock_state: type_state_4 := state1;
-    signal interclock2_state: type_state_4 := state1;
-    signal interclock3_state: type_state_4 := state1;
-    signal clk_enable_state             : type_state_4:=state1;
 
     --fmrom signals
-    signal fmrom_read       : std_logic;
+    signal fmrom_req       : std_logic;
     signal fmrom_dout       : std_logic_vector (7 downto 0);
-    signal fmrom_counter    : std_logic_vector (4 downto 0);
-    signal fmrom_state      : std_logic_vector (1 downto 0);
-    signal bus_data_reverse : std_logic;
+
+    --scc signals
+    signal scc_wav          : std_logic_vector(14 downto 0);
+    signal scc_wav2         : std_logic_vector(14 downto 0);
+    signal scc_dbo          : std_logic_vector (7 downto 0);
+    signal scc_ram_din      : std_logic_vector (7 downto 0);
+    signal scc_ram_dout     : std_logic_vector (7 downto 0);
+    signal scc_ram_wr       : std_logic;
+    signal scc_ram_adr      : std_logic_vector (20 downto 0);
+    signal scc_req          : std_logic;
+    signal scc_wrt          : std_logic;
+
+    --mixer signals
+    signal fm_wav           : std_logic_vector (23 downto 0);
+    signal fm_mix           : std_logic_vector (16 downto 0);
+    signal fm_wav_filter    : std_logic_vector (23 downto 0);
+	signal audio_sample     : std_logic_vector (15 downto 0);
+	signal audio_sample1    : std_logic_vector (15 downto 0);
+	signal audio_sample2    : std_logic_vector (15 downto 0);
+
+    --slot decoder signals
+    signal  w_page_dec      : std_logic_vector(  3 downto 0 );
 
 component denoise
     port (
@@ -164,7 +174,9 @@ component v9958_top
     port(
 
     clk     : in std_logic;
-    s1   : in std_logic;
+    s1      : in std_logic;
+    clk_50  : in std_logic;
+    clk_125 : in std_logic;
 
     reset_n : in std_logic;
     mode    : in std_logic_vector(1 downto 0);
@@ -178,6 +190,11 @@ component v9958_top
     cdo     : in std_logic_vector(7 downto 0);
 
     audio_sample   : in std_logic_vector(15 downto 0);
+
+    adc_clk     : out std_logic;
+    adc_cs      : out std_logic;
+    adc_mosi    : out std_logic;
+    adc_miso    : in std_logic;
 
     --led     : out std_logic_vector(1 downto 0);
 
@@ -268,7 +285,7 @@ component fm_filter
     );
 end component;
 
- component ram_16kb 
+component fmrom 
 	PORT
 	(
 		address		: IN STD_LOGIC_VECTOR (13 DOWNTO 0);
@@ -277,7 +294,7 @@ end component;
 		wren		: IN STD_LOGIC ;
 		q		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
 	);
-END component;  
+END component;    
 
 component  monostable
     port (
@@ -285,6 +302,31 @@ component  monostable
 		clock       : in std_logic;
 		pulse_out_n : out std_logic
 	);
+end component;
+
+component megaram   -- ESE-MegaSCC+ / ESE-MegaRAM (not a brazilian MegaRAM)
+    port(
+        clk21m      : in    std_logic;
+        reset       : in    std_logic;
+        clkena      : in    std_logic;
+        req         : in    std_logic;
+        ack         : out   std_logic;
+        wrt         : in    std_logic;
+        adr         : in    std_logic_vector( 15 downto 0 );
+        dbi         : out   std_logic_vector(  7 downto 0 );
+        dbo         : in    std_logic_vector(  7 downto 0 );
+
+        ramreq      : out   std_logic;
+        ramwrt      : out   std_logic;
+        ramadr      : out   std_logic_vector( 20 downto 0 );
+        ramdbi      : in    std_logic_vector(  7 downto 0 );
+        ramdbo      : out   std_logic_vector(  7 downto 0 );
+
+        mapsel      : in    std_logic_vector(  1 downto 0 );        -- "0-":SCC+, "10":ASC8K, "11":ASC16K
+
+        wavl        : out   std_logic_vector( 14 downto 0 );
+        wavr        : out   std_logic_vector( 14 downto 0 )
+    );
 end component;
 
 begin
@@ -317,9 +359,40 @@ memRd_n <= busRd_n or busMreq_n;
 -- ____________________________________________________________________________________
 -- BUS ISOLATION GOES HERE
 ex_bus_data_reverse_n <= not bus_data_reverse;
-ex_busDataOut <= fmrom_dout when (bus_data_reverse = '1') else (others => 'Z');
+ex_busDataOut <= scc_dbo when scc_req = '1' and busRd_n = '0' and bus_data_reverse = '1'else
+                 fmrom_dout when fmrom_req = '1' and bus_data_reverse = '1' else
+                 (others => 'Z');
 
+process (ex_clk_27m, reset)
+begin
+    if reset = '1' then
+        bus_data_counter <= (others => '0');
+        bus_data_state <= "00";
+        bus_data_reverse <= '0';
 
+    elsif rising_edge(ex_clk_27m) then
+        case bus_data_state is
+            when "00" =>
+                if busRd_n = '0' and (scc_req = '1' or fmrom_req = '1')then
+                    bus_data_state <= "01";
+                end if;
+            when "01" =>
+                bus_data_counter <= bus_data_counter + 1;
+                if bus_data_counter > 2 then
+                    bus_data_reverse <= '1';
+                    bus_data_state <= "10";
+                end if;
+            when "10" =>
+                bus_data_counter <= (others => '0');
+                if scc_req = '0' and fmrom_req = '0' then
+                    bus_data_reverse <= '0';
+                    bus_data_state <= "00";
+                end if;
+            when others =>
+                bus_data_state <= "00"; 
+        end case;
+    end if;
+end process;
 
 reset <= not busReset_n;
 reset_n <= busReset_n;
@@ -332,6 +405,8 @@ vdp4 : v9958_top
     port map(
     clk => ex_clk_27m,
     s1 => ex_reset,
+    clk_50  => '0',
+    clk_125 => '0',
 
     reset_n => busReset_n,
     mode    => busAddress(1 downto 0),
@@ -346,6 +421,11 @@ vdp4 : v9958_top
 
     --audio_sample   => psgSound1 & "0000", 
     audio_sample   => audio_sample, 
+
+    adc_clk  => open,
+    adc_cs   => open,
+    adc_mosi => open,
+    adc_miso => '0',
 
     maxspr_n    => '1',
     scanlin_n   => '0',
@@ -410,13 +490,7 @@ psg1: YM2149
 
 
 --opll and signals
-opll_req  <=  '0' when( busIorq_n = '0' and busAddress(7 downto 1) = "0111110"  and ( busWr_n = '0') )else '1';    -- I/O:7C-7Dh   / OPLL (YM2413)
-opll_mix <= ("00" & opll_mo) + ("00" & opll_ro) - "001000000000";
-opll_wav <= opll_mix(9 downto 0) & "000000" & "0000000000000000";
-audio_sample1 <= "000" & psgSound1 & "00000";
-audio_sample2 <= '0' & opll_wav_filter(31) & opll_wav_filter(29 downto 16);
-audio_sample <= audio_sample1 + audio_sample2;
-
+opll_req_n  <=  '0' when( busIorq_n = '0' and busAddress(7 downto 1) = "0111110"  and ( busWr_n = '0') )else '1';    -- I/O:7C-7Dh   / OPLL (YM2413)
 
 opll1: opll
     port map(
@@ -425,7 +499,7 @@ opll1: opll
         xena        => '1',
         d           => busDataOut,
         a           => busAddress(0),
-        cs_n        => opll_req,
+        cs_n        => opll_req_n,
         we_n        => '0',
         ic_n        => reset_n,
         mo          => opll_mo,
@@ -435,53 +509,75 @@ opll1: opll
 
 filtro_fm : fm_filter
     generic map (
-        DATA_WIDTH => opll_wav'high + 1
+        DATA_WIDTH => fm_wav'high + 1
     )
     port map(
         clk_3m6 => ex_clk_3m6,
         clk_27m => ex_clk_27m,
         reset => reset,
-        data_in => opll_wav,
-        data_out => opll_wav_filter
+        data_in => fm_wav,
+        data_out => fm_wav_filter
+    );
+
+--scc and signals
+scc_req <= '1' when w_page_dec(2) = '1' and busMreq_n = '0' and (busWr_n = '0' or busRd_n = '0') and (bus_sltsl_n = '0') and busReset_n = '1'  else '0';
+scc_wrt <= '1' when (scc_req = '1' and busWr_n = '0') else '0';
+
+scc1:  megaram
+    port map (
+        clk21m      => clk_3m6,
+        reset       => reset,
+        clkena      => '1',
+        req         => scc_req,
+        ack         => open,
+        wrt         => scc_wrt,
+        adr         => busAddress,
+        dbi         => scc_dbo,
+        dbo         => busDataOut,
+
+        ramreq      => open,
+        ramwrt      => open, --scc_ram_wr,
+        ramadr      => open, --scc_ram_adr,
+        ramdbi      => x"00", --scc_ram_dout,
+        ramdbo      => open, --scc_ram_din,
+
+        mapsel     => "00",        -- "0-":SCC+, "10":ASC8K, "11":ASC16K
+
+        wavl       => scc_wav,
+        wavr        => open
     );
 
 
---fm rom and signals
-fmrom_read <= '1' when (busMreq_n='0' and bus_sltsl_n = '0' and busRd_n = '0' and busReset_n = '1') else '0';
-
-process (ex_clk_27m, reset)
+--mixer
+process (clk_3m6)
 begin
-    if reset = '1' then
-        fmrom_counter <= (others => '0');
-        fmrom_state <= "00";
+    if rising_edge(clk_3m6) then
+        opll_mix <= ("00" & opll_mo) + ("00" & opll_ro) - "001000000000";
+        --opll_wav <= opll_mix(9 downto 0) & "000000" & "0000000000000000";
+        scc_wav2 <= "0" & (scc_wav(14) xor '1') & scc_wav(13 downto 1);
 
-    elsif rising_edge(ex_clk_27m) then
-        case fmrom_state is
-            when "00" =>
-                if fmrom_read = '1' then
-                    fmrom_state <= "01";
-                end if;
-            when "01" =>
-                fmrom_counter <= fmrom_counter + 1;
-                if fmrom_counter > 2 then
-                    bus_data_reverse <= '1';
-                    fmrom_state <= "10";
-                end if;
-            when "10" =>
-                fmrom_counter <= (others => '0');
-                if fmrom_read = '0' then
-                    bus_data_reverse <= '0';
-                    fmrom_state <= "00";
-                end if;
-            when others =>
-                fmrom_state <= "00"; 
-        
-        end case;
+        fm_mix <= opll_mix & "00000" + ("00" & scc_wav2) - "00010000000000000";
+        fm_wav <= fm_mix(14 downto 0) & "000000000";
 
+        audio_sample1 <= "0000" & psgSound1 & "0000";
+        audio_sample2 <= '0' & fm_wav_filter(23) & fm_wav_filter(21 downto 8);
+        audio_sample <= audio_sample1 + audio_sample2;
     end if;
 end process;
 
-fmrom: ram_16kb
+-- slot decoder
+with( busAddress(15 downto 14) ) select w_page_dec <=
+    "0001"      when "00",
+    "0010"      when "01",
+    "0100"      when "10",
+    "1000"      when "11",
+    "XXXX"      when others;
+
+
+--fm rom and signals
+fmrom_req <= '1' when w_page_dec(1) = '1' and busMreq_n='0' and bus_sltsl_n = '0' and busRd_n = '0' and busReset_n = '1' else '0';
+
+fmrom1: fmrom
     port map
     (
         address => busAddress(13 downto 0),
@@ -490,7 +586,6 @@ fmrom: ram_16kb
         wren => '0',
         q => fmrom_dout
     );
-
 
 denoise1: denoise_low
 	port map (

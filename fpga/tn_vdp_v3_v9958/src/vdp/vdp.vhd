@@ -1138,11 +1138,11 @@ BEGIN
         REQ_HSYNC_INT_N         => REQ_HSYNC_INT_N                  ,
         REG_R19_HSYNC_INT_LINE  => REG_R19_HSYNC_INT_LINE
     );
-
+    
     PROCESS( CLK21M )
     BEGIN
         IF( CLK21M'EVENT AND CLK21M = '1' )THEN
-            IF( PREDOTCOUNTER_X = 255 )THEN
+            IF( PREDOTCOUNTER_X = 255+25 OR PREDOTCOUNTER_X = "111111111")THEN
                 ACTIVE_LINE <= '1';
             ELSE
                 ACTIVE_LINE <= '0';
@@ -1199,7 +1199,7 @@ BEGIN
         IF( RESET = '1' )THEN
             BWINDOW_X <= '0';
         ELSIF( CLK21M'EVENT AND CLK21M = '1' )THEN
-            IF( H_CNT = 251) THEN --200) THEN
+            IF( H_CNT = 200) THEN --200) THEN
                 BWINDOW_X <= '1';
             ELSIF( H_CNT = CLOCKS_PER_LINE-1-1 )THEN
                 BWINDOW_X <= '0';
@@ -1262,10 +1262,14 @@ BEGIN
         IF( RESET = '1' )THEN
             PREWINDOW_X <= '0';
         ELSIF( CLK21M'EVENT AND CLK21M = '1' )THEN
-            IF( (H_CNT = ("00" & (OFFSET_X + LED_TV_X_NTSC - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00") + 4) & "10") AND REG_R25_YJK = '1' AND CENTERYJK_R25_N = '1' AND VDPR9PALMODE = '0') OR
-                (H_CNT = ("00" & (OFFSET_X + LED_TV_X_NTSC - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00")    ) & "10") AND (REG_R25_YJK = '0' OR CENTERYJK_R25_N = '0') AND VDPR9PALMODE = '0') OR
-                (H_CNT = ("00" & (OFFSET_X + LED_TV_X_PAL - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00") + 4) & "10") AND REG_R25_YJK = '1' AND CENTERYJK_R25_N = '1' AND VDPR9PALMODE = '1') OR
-                (H_CNT = ("00" & (OFFSET_X + LED_TV_X_PAL - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00")    ) & "10") AND (REG_R25_YJK = '0' OR CENTERYJK_R25_N = '0') AND VDPR9PALMODE = '1') )THEN
+--            IF( (H_CNT = ("00" & (OFFSET_X + LED_TV_X_NTSC - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00") + 4) & "10") AND REG_R25_YJK = '1' AND CENTERYJK_R25_N = '1' AND VDPR9PALMODE = '0') OR
+--                (H_CNT = ("00" & (OFFSET_X + LED_TV_X_NTSC - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00")    ) & "10") AND (REG_R25_YJK = '0' OR CENTERYJK_R25_N = '0') AND VDPR9PALMODE = '0') OR
+--                (H_CNT = ("00" & (OFFSET_X + LED_TV_X_PAL - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00") + 4) & "10") AND REG_R25_YJK = '1' AND CENTERYJK_R25_N = '1' AND VDPR9PALMODE = '1') OR
+--                (H_CNT = ("00" & (OFFSET_X + LED_TV_X_PAL - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00")    ) & "10") AND (REG_R25_YJK = '0' OR CENTERYJK_R25_N = '0') AND VDPR9PALMODE = '1') )THEN
+            IF( (H_CNT = ("00" & (OFFSET_X + LED_TV_X_NTSC - ((  (NOT CENTERYJK_R25_N)) & "00") + 4) & "10") AND REG_R25_YJK = '1' AND CENTERYJK_R25_N = '1' AND VDPR9PALMODE = '0') OR
+                (H_CNT = ("00" & (OFFSET_X + LED_TV_X_NTSC - ((  (NOT CENTERYJK_R25_N)) & "00")    ) & "10") AND (REG_R25_YJK = '0' OR CENTERYJK_R25_N = '0') AND VDPR9PALMODE = '0') OR
+                (H_CNT = ("00" & (OFFSET_X + LED_TV_X_PAL - ((  (NOT CENTERYJK_R25_N)) & "00") + 4) & "10") AND REG_R25_YJK = '1' AND CENTERYJK_R25_N = '1' AND VDPR9PALMODE = '1') OR
+                (H_CNT = ("00" & (OFFSET_X + LED_TV_X_PAL - ((  (NOT CENTERYJK_R25_N)) & "00")    ) & "10") AND (REG_R25_YJK = '0' OR CENTERYJK_R25_N = '0') AND VDPR9PALMODE = '1') )THEN
                 -- HOLD
             ELSIF( H_CNT(1 DOWNTO 0) = "10") THEN
                 IF( PREDOTCOUNTER_X = "111111111" ) THEN

@@ -7,7 +7,7 @@
     <FileList>
         <File path="fm_filter/fm_filter.v" type="file.verilog" enable="1"/>
         <File path="fm_filter/inter_clock.v" type="file.verilog" enable="1"/>
-        <File path="src/ram_16kb.v" type="file.verilog" enable="1"/>
+        <File path="src/fmrom.v" type="file.verilog" enable="1"/>
         <File path="tn_vdp_v3_v9958/src/clockdiv.v" type="file.verilog" enable="1"/>
         <File path="tn_vdp_v3_v9958/src/gowin/clk_108p.v" type="file.verilog" enable="1"/>
         <File path="tn_vdp_v3_v9958/src/gowin/clk_135.v" type="file.verilog" enable="1"/>
@@ -50,6 +50,8 @@
         <File path="OCM_3.9/sound/opll/vm2413/vm2413.vhd" type="file.vhdl" enable="1"/>
         <File path="OCM_3.9/sound/opll/vm2413/voicememory.vhd" type="file.vhdl" enable="1"/>
         <File path="OCM_3.9/sound/opll/vm2413/voicerom.vhd" type="file.vhdl" enable="1"/>
+        <File path="OCM_3.9/sound/scc/megaram.vhd" type="file.vhdl" enable="1"/>
+        <File path="OCM_3.9/sound/scc/scc_wave.vhd" type="file.vhdl" enable="1"/>
         <File path="PSG_YM2149/YM2149.vhdl" type="file.vhdl" enable="1"/>
         <File path="denoise/denoise.vhd" type="file.vhdl" enable="1"/>
         <File path="denoise/denoise_8.vhd" type="file.vhdl" enable="1"/>

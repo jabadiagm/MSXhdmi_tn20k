@@ -127,7 +127,9 @@ ARCHITECTURE RTL OF VDP_SSG IS
             INTERLACE_MODE      : IN    STD_LOGIC;
             Y212_MODE           : IN    STD_LOGIC;
             OFFSET_Y            : IN    STD_LOGIC_VECTOR(  6 DOWNTO 0 );
-            HDMI_RESET          : OUT   STD_LOGIC    
+            HDMI_RESET          : OUT   STD_LOGIC;
+            BLANKING_START      : IN    STD_LOGIC;
+            BLANKING_END        : IN    STD_LOGIC
         );
     END COMPONENT;
 
@@ -160,7 +162,10 @@ ARCHITECTURE RTL OF VDP_SSG IS
     SIGNAL W_LINE_MODE              : STD_LOGIC_VECTOR(  1 DOWNTO 0 );
     SIGNAL W_V_BLANKING_START       : STD_LOGIC;
     SIGNAL W_V_BLANKING_END         : STD_LOGIC;
+
     SIGNAL W_V_SYNC_INTR_START_LINE : STD_LOGIC_VECTOR(  8 DOWNTO 0 );
+    SIGNAL FF_TOP_BORDER_LINES      : STD_LOGIC_VECTOR(8 DOWNTO 0);
+
 BEGIN
     -----------------------------------------------------------------------------
     --  PORT ASSIGNMENT
@@ -202,7 +207,9 @@ BEGIN
         INTERLACE_MODE      => REG_R9_INTERLACE_MODE,
         Y212_MODE           => REG_R9_Y_DOTS        ,
         OFFSET_Y            => OFFSET_Y             ,
-        HDMI_RESET          => HDMI_RESET
+        HDMI_RESET          => HDMI_RESET           ,
+        BLANKING_START      => W_V_BLANKING_START   ,
+        BLANKING_END        => W_V_BLANKING_END
     );
 
     -----------------------------------------------------------------------------
@@ -285,10 +292,15 @@ BEGIN
         IF( RESET = '1' )THEN
             FF_PRE_X_CNT <= (OTHERS =>'0');
         ELSIF( CLK21M'EVENT AND CLK21M = '1' )THEN
-            IF( (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_NTSC - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00") + 4) & "10") AND REG_R25_YJK = '1' AND CENTERYJK_R25_N = '1' AND VDPR9PALMODE = '0') OR
-                (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_NTSC - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00")    ) & "10") AND (REG_R25_YJK = '0' OR CENTERYJK_R25_N = '0') AND VDPR9PALMODE = '0') OR
-                (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_PAL - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00") + 4) & "10") AND REG_R25_YJK = '1' AND CENTERYJK_R25_N = '1' AND VDPR9PALMODE = '1') OR
-                (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_PAL - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00")    ) & "10") AND (REG_R25_YJK = '0' OR CENTERYJK_R25_N = '0') AND VDPR9PALMODE = '1') )THEN
+--            IF( (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_NTSC - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00") + 4) & "10") AND REG_R25_YJK = '1' AND CENTERYJK_R25_N = '1' AND VDPR9PALMODE = '0') OR
+--                (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_NTSC - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00")    ) & "10") AND (REG_R25_YJK = '0' OR CENTERYJK_R25_N = '0') AND VDPR9PALMODE = '0') OR
+--                (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_PAL - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00") + 4) & "10") AND REG_R25_YJK = '1' AND CENTERYJK_R25_N = '1' AND VDPR9PALMODE = '1') OR
+--                (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_PAL - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00")    ) & "10") AND (REG_R25_YJK = '0' OR CENTERYJK_R25_N = '0') AND VDPR9PALMODE = '1') )THEN
+            IF( (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_NTSC - ((  (NOT CENTERYJK_R25_N)) & "00") + 4) & "10") AND REG_R25_YJK = '1' AND CENTERYJK_R25_N = '1' AND VDPR9PALMODE = '0') OR
+                (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_NTSC - ((  (NOT CENTERYJK_R25_N)) & "00")    ) & "10") AND (REG_R25_YJK = '0' OR CENTERYJK_R25_N = '0') AND VDPR9PALMODE = '0') OR
+                (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_PAL - ((  (NOT CENTERYJK_R25_N)) & "00") + 4) & "10") AND REG_R25_YJK = '1' AND CENTERYJK_R25_N = '1' AND VDPR9PALMODE = '1') OR
+                (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_PAL - ((  (NOT CENTERYJK_R25_N)) & "00")    ) & "10") AND (REG_R25_YJK = '0' OR CENTERYJK_R25_N = '0') AND VDPR9PALMODE = '1') )THEN
+
                 FF_PRE_X_CNT <= W_PRE_X_CNT_START2;
             ELSIF( W_H_CNT(1 DOWNTO 0) = "10" )THEN
                 FF_PRE_X_CNT <= FF_PRE_X_CNT + 1;
@@ -301,10 +313,14 @@ BEGIN
         IF( RESET = '1' )THEN
             FF_X_CNT <= (OTHERS =>'0');
         ELSIF( CLK21M'EVENT AND CLK21M = '1' )THEN
-            IF( (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_NTSC - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00") + 4) & "10") AND REG_R25_YJK = '1' AND CENTERYJK_R25_N = '1' AND VDPR9PALMODE = '0') OR
-                (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_NTSC - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00")    ) & "10") AND (REG_R25_YJK = '0' OR CENTERYJK_R25_N = '0') AND VDPR9PALMODE = '0') OR
-                (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_PAL - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00") + 4) & "10") AND REG_R25_YJK = '1' AND CENTERYJK_R25_N = '1' AND VDPR9PALMODE = '1') OR
-                (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_PAL - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00")    ) & "10") AND (REG_R25_YJK = '0' OR CENTERYJK_R25_N = '0') AND VDPR9PALMODE = '1') )THEN
+--            IF( (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_NTSC - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00") + 4) & "10") AND REG_R25_YJK = '1' AND CENTERYJK_R25_N = '1' AND VDPR9PALMODE = '0') OR
+--                (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_NTSC - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00")    ) & "10") AND (REG_R25_YJK = '0' OR CENTERYJK_R25_N = '0') AND VDPR9PALMODE = '0') OR
+--                (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_PAL - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00") + 4) & "10") AND REG_R25_YJK = '1' AND CENTERYJK_R25_N = '1' AND VDPR9PALMODE = '1') OR
+--                (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_PAL - ((REG_R25_MSK AND (NOT CENTERYJK_R25_N)) & "00")    ) & "10") AND (REG_R25_YJK = '0' OR CENTERYJK_R25_N = '0') AND VDPR9PALMODE = '1') )THEN
+            IF( (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_NTSC - ((  (NOT CENTERYJK_R25_N)) & "00") + 4) & "10") AND REG_R25_YJK = '1' AND CENTERYJK_R25_N = '1' AND VDPR9PALMODE = '0') OR
+                (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_NTSC - ((  (NOT CENTERYJK_R25_N)) & "00")    ) & "10") AND (REG_R25_YJK = '0' OR CENTERYJK_R25_N = '0') AND VDPR9PALMODE = '0') OR
+                (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_PAL - ((  (NOT CENTERYJK_R25_N)) & "00") + 4) & "10") AND REG_R25_YJK = '1' AND CENTERYJK_R25_N = '1' AND VDPR9PALMODE = '1') OR
+                (W_H_CNT = ("00" & (OFFSET_X + LED_TV_X_PAL - ((  (NOT CENTERYJK_R25_N)) & "00")    ) & "10") AND (REG_R25_YJK = '0' OR CENTERYJK_R25_N = '0') AND VDPR9PALMODE = '1') )THEN
                 -- HOLD
             ELSIF( W_H_CNT(1 DOWNTO 0) = "10") THEN
                 IF( FF_PRE_X_CNT = "111111111" )THEN
@@ -410,6 +426,7 @@ BEGIN
                         PREDOTCOUNTERYPSTART := "111010101";                    -- TOP BORDER LINES = -43
                     END IF;
                     FF_MONITOR_LINE <= PREDOTCOUNTERYPSTART + W_Y_ADJ;
+                    FF_TOP_BORDER_LINES <= "000000000" - PREDOTCOUNTERYPSTART - W_Y_ADJ;
                     PREWINDOW_Y_SP  <= '1';
                 ELSE
                     IF( PREDOTCOUNTER_YP_V = 255 )THEN
@@ -444,17 +461,17 @@ BEGIN
     W_LINE_MODE         <=  REG_R9_Y_DOTS & VDPR9PALMODE;
 
     WITH W_LINE_MODE SELECT W_V_SYNC_INTR_START_LINE <=
-        CONV_STD_LOGIC_VECTOR( V_BLANKING_START_192_NTSC, 9 )   WHEN "00",
-        CONV_STD_LOGIC_VECTOR( V_BLANKING_START_212_NTSC, 9 )   WHEN "10",
-        CONV_STD_LOGIC_VECTOR( V_BLANKING_START_192_PAL, 9 )    WHEN "01",
-        CONV_STD_LOGIC_VECTOR( V_BLANKING_START_212_PAL, 9 )    WHEN "11",
+        CONV_STD_LOGIC_VECTOR( 192 + CONV_INTEGER(OFFSET_Y) + LED_TV_Y_NTSC, 9 )   WHEN "00",
+        CONV_STD_LOGIC_VECTOR( 212 + CONV_INTEGER(OFFSET_Y) + LED_TV_Y_NTSC, 9 )   WHEN "10",
+        CONV_STD_LOGIC_VECTOR( 192 + CONV_INTEGER(OFFSET_Y) + LED_TV_Y_PAL, 9 )    WHEN "01",
+        CONV_STD_LOGIC_VECTOR( 212 + CONV_INTEGER(OFFSET_Y) + LED_TV_Y_PAL, 9 )    WHEN "11",
         (OTHERS => 'X')                                         WHEN OTHERS;
 
     W_V_BLANKING_END    <=  '1' WHEN( (W_V_CNT_IN_FIELD = ("00" & (OFFSET_Y + LED_TV_Y_NTSC) & (W_FIELD AND REG_R9_INTERLACE_MODE)) AND VDPR9PALMODE = '0') OR
                                       (W_V_CNT_IN_FIELD = ("00" & (OFFSET_Y + LED_TV_Y_PAL) & (W_FIELD AND REG_R9_INTERLACE_MODE)) AND VDPR9PALMODE = '1') )ELSE
                             '0';
-    W_V_BLANKING_START  <=  '1' WHEN( (W_V_CNT_IN_FIELD = ((W_V_SYNC_INTR_START_LINE + LED_TV_Y_NTSC) & (W_FIELD AND REG_R9_INTERLACE_MODE)) AND VDPR9PALMODE = '0') OR
-                                      (W_V_CNT_IN_FIELD = ((W_V_SYNC_INTR_START_LINE + LED_TV_Y_PAL) & (W_FIELD AND REG_R9_INTERLACE_MODE)) AND VDPR9PALMODE = '1') )ELSE
+    W_V_BLANKING_START  <=  '1' WHEN( (W_V_CNT_IN_FIELD = ((W_V_SYNC_INTR_START_LINE + FF_TOP_BORDER_LINES) & (W_FIELD AND REG_R9_INTERLACE_MODE)) AND VDPR9PALMODE = '0') OR
+                                      (W_V_CNT_IN_FIELD = ((W_V_SYNC_INTR_START_LINE + FF_TOP_BORDER_LINES) & (W_FIELD AND REG_R9_INTERLACE_MODE)) AND VDPR9PALMODE = '1') )ELSE
                             '0';
 
 END RTL;
